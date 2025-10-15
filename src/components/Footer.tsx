@@ -23,7 +23,7 @@ const Footer = () => {
           <p className="flex items-center justify-center gap-2">
             Made with <Heart size={16} className="text-red-500" /> by Kishore Balaji P
           </p>
-          <p className="mt-2 text-sm">© 2024 All rights reserved</p>
+          <p className="mt-2 text-sm">© 2025 All rights reserved</p>
         </div>
       </div>
     </footer>

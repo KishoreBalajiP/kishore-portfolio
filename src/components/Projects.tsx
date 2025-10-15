@@ -1,4 +1,4 @@
-import { Github, Download, ExternalLink, Filter } from 'lucide-react';
+import { Github, Download, ExternalLink } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 interface Project {
@@ -9,35 +9,30 @@ interface Project {
   features: string[];
   deployment: string;
   image: string;
+  liveUrl: string; // Website link
   githubUrl?: string;
 }
 
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [filter, setFilter] = useState<string>('all');
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   const projects: Project[] = [
     {
       id: 1,
-      title: 'Wholesale E-Commerce Platform',
+      title: 'JayaStores E-Commerce Platform',
       description:
         'A comprehensive e-commerce solution with user authentication, product browsing, shopping cart, and secure payments integration.',
       stack: ['React', 'Node.js', 'Express.js', 'PostgreSQL', 'AWS'],
@@ -46,24 +41,17 @@ const Projects = () => {
         'User authentication and authorization',
         'Product browsing and search',
         'Shopping cart and checkout',
-        'Secure payment integration (Stripe/Razorpay)',
+        'Secure payment integration (Razorpay)',
         'AI chatbot for customer support',
-        'Order tracking and management',
+        'Order management',
+        'Cloud deployment on AWS(lambda), vercel and neon for database',
       ],
       deployment: 'AWS',
       image: 'project1',
-      githubUrl: 'https://github.com/kishorebalaji',
+      liveUrl: 'https://jayastores.vercel.app', // Replace with your live site
+      githubUrl: 'https://github.com/KishoreBalajiP/eco_backend',
     },
   ];
-
-  const filters = ['all', 'React', 'Node.js', 'PostgreSQL'];
-
-  const filteredProjects =
-    filter === 'all'
-      ? projects
-      : projects.filter((project) =>
-          project.stack.some((tech) => tech.toLowerCase() === filter.toLowerCase())
-        );
 
   return (
     <section id="projects" ref={sectionRef} className="py-20 bg-white">
@@ -75,29 +63,12 @@ const Projects = () => {
         >
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Projects</h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
-            Full-stack applications showcasing modern web development practices and scalable
-            architectures
+            Full-stack applications showcasing modern web development practices and scalable architectures.
           </p>
-
-          <div className="flex justify-center gap-3 flex-wrap">
-            {filters.map((filterOption) => (
-              <button
-                key={filterOption}
-                onClick={() => setFilter(filterOption)}
-                className={`px-6 py-2 rounded-lg font-medium transition-all ${
-                  filter === filterOption
-                    ? 'bg-blue-600 text-white shadow-lg scale-105'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                {filterOption.charAt(0).toUpperCase() + filterOption.slice(1)}
-              </button>
-            ))}
-          </div>
         </div>
 
         <div className="max-w-6xl mx-auto grid md:grid-cols-1 gap-8">
-          {filteredProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <div
               key={project.id}
               className={`bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-1000 hover:shadow-2xl ${
@@ -106,12 +77,20 @@ const Projects = () => {
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className="md:flex">
-                <div className="md:w-2/5 bg-gradient-to-br from-blue-500 to-blue-700 p-12 flex items-center justify-center">
+                {/* Left Box Clickable */}
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="md:w-2/5 bg-gradient-to-br from-blue-500 to-blue-700 p-12 flex items-center justify-center cursor-pointer transition-transform hover:scale-105"
+                >
                   <div className="text-white text-center">
                     <ExternalLink size={64} className="mx-auto mb-4" />
                     <p className="text-xl font-semibold">{project.title}</p>
                   </div>
-                </div>
+                </a>
+
+                {/* Right Section */}
                 <div className="md:w-3/5 p-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">{project.title}</h3>
                   <p className="text-gray-600 mb-4">{project.description}</p>
@@ -133,7 +112,7 @@ const Projects = () => {
                   <div className="mb-4">
                     <h4 className="font-semibold text-gray-900 mb-2">Key Features:</h4>
                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600">
-                      {project.features.slice(0, 4).map((feature, idx) => (
+                      {project.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start gap-2">
                           <span className="text-blue-600 mt-1">•</span>
                           <span>{feature}</span>
@@ -142,7 +121,7 @@ const Projects = () => {
                     </ul>
                   </div>
 
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-3 mt-4">
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
@@ -154,14 +133,24 @@ const Projects = () => {
                         GitHub
                       </a>
                     )}
-                    <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+
+                    <a
+                      href="/pdf/project-report.pdf" // replace with your PDF file path
+                      download
+                      className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                    >
                       <Download size={18} />
                       Project Report
-                    </button>
-                    <button className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition-colors">
+                    </a>
+
+                    <a
+                      href="/pdf/debug-report.pdf" // replace with your PDF file path
+                      download
+                      className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition-colors"
+                    >
                       <Download size={18} />
                       Debug Report
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>

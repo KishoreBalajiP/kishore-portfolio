@@ -66,7 +66,7 @@ const Resume = () => {
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-2 text-center">Technical Skills</h3>
             <p className="text-gray-600 text-center">
-              MERN Stack, AWS Solution Architect (90%), React.js, Python, PostgreSQL, Git/GitHub
+               Skilled in AWS Cloud and DevOps with a strong foundation in modern web development.
             </p>
           </div>
 

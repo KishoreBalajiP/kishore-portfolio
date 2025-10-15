@@ -1,5 +1,8 @@
-import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
+import { FaGithub, FaLinkedin, FaInstagram, FaTwitter, FaWhatsapp } from 'react-icons/fa';
+import { HiOutlineMail, HiOutlinePhone, HiLocationMarker } from 'react-icons/hi';
+import { FiSend } from 'react-icons/fi';
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -10,31 +13,39 @@ const Contact = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
       { threshold: 0.1 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setFormData({ name: '', email: '', message: '' });
-      setSubmitted(false);
-    }, 3000);
-  };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+      setSubmitted(true);
+      setTimeout(() => {
+        setFormData({ name: '', email: '', message: '' });
+        setSubmitted(false);
+      }, 3000);
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+    }
   };
 
   return (
@@ -52,6 +63,7 @@ const Contact = () => {
         </div>
 
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+          {/* Contact Form */}
           <div
             className={`transition-all duration-1000 delay-200 ${
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
@@ -106,7 +118,7 @@ const Contact = () => {
                     type="submit"
                     className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-all hover:scale-105 shadow-lg"
                   >
-                    <Send size={20} />
+                    <FiSend size={20} />
                     Send Message
                   </button>
                 </form>
@@ -114,15 +126,17 @@ const Contact = () => {
             </div>
           </div>
 
+          {/* Contact Info & Social Links */}
           <div
             className={`space-y-6 transition-all duration-1000 delay-300 ${
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
             }`}
           >
+            {/* Phone */}
             <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-6 text-white">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Phone size={24} />
+                  <HiOutlinePhone size={24} color="#F87171" />
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">Phone</h4>
@@ -133,10 +147,11 @@ const Contact = () => {
               </div>
             </div>
 
+            {/* Email */}
             <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-6 text-white">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Mail size={24} />
+                  <HiOutlineMail size={24} color="#F87171" />
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">Email</h4>
@@ -150,10 +165,11 @@ const Contact = () => {
               </div>
             </div>
 
+            {/* Location */}
             <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-6 text-white">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center flex-shrink-0">
-                  <MapPin size={24} />
+                  <HiLocationMarker size={24} color="#F87171" />
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">Location</h4>
@@ -162,16 +178,17 @@ const Contact = () => {
               </div>
             </div>
 
+            {/* Social Media */}
             <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-6 text-white">
               <h4 className="font-semibold mb-4">Connect on Social Media</h4>
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-4">
                 <a
                   href="https://linkedin.com/in/kishore-balaji"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all hover:scale-110"
                 >
-                  <Linkedin size={24} />
+                  <FaLinkedin size={24} color="#0A66C2" />
                 </a>
                 <a
                   href="https://github.com/kishorebalaji"
@@ -179,7 +196,31 @@ const Contact = () => {
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all hover:scale-110"
                 >
-                  <Github size={24} />
+                  <FaGithub size={24} color="#333" />
+                </a>
+                <a
+                  href="https://instagram.com/yourusername"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all hover:scale-110"
+                >
+                  <FaInstagram size={24} color="#E1306C" />
+                </a>
+                <a
+                  href="https://twitter.com/yourusername"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all hover:scale-110"
+                >
+                  <FaTwitter size={24} color="#1DA1F2" />
+                </a>
+                <a
+                  href="https://wa.me/916381858714"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all hover:scale-110"
+                >
+                  <FaWhatsapp size={24} color="#25D366" />
                 </a>
               </div>
             </div>
