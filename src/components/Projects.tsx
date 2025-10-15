@@ -9,8 +9,9 @@ interface Project {
   features: string[];
   deployment: string;
   image: string;
-  liveUrl: string; // Website link
-  githubUrl?: string;
+  liveUrl: string;
+  githubBackendUrl?: string;
+  githubFrontendUrl?: string;
 }
 
 const Projects = () => {
@@ -48,8 +49,9 @@ const Projects = () => {
       ],
       deployment: 'AWS',
       image: 'project1',
-      liveUrl: 'https://jayastores.vercel.app', // Replace with your live site
-      githubUrl: 'https://github.com/KishoreBalajiP/eco_backend',
+      liveUrl: 'https://jayastores.vercel.app',
+      githubBackendUrl: 'https://github.com/KishoreBalajiP/eco_backend',
+      githubFrontendUrl: 'https://github.com/KishoreBalajiP/jayastores-frontend',
     },
   ];
 
@@ -77,7 +79,7 @@ const Projects = () => {
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className="md:flex">
-                {/* Left Box Clickable */}
+                {/* Left Box */}
                 <a
                   href={project.liveUrl}
                   target="_blank"
@@ -121,32 +123,41 @@ const Projects = () => {
                     </ul>
                   </div>
 
-                  <div className="flex flex-wrap gap-3 mt-4">
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors"
-                      >
-                        <Github size={18} />
-                        GitHub
-                      </a>
-                    )}
+                  {/* Buttons */}
+                  <div className="flex flex-wrap gap-3 mt-6">
+                    <a
+                      href={project.githubBackendUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-all flex-2 text-center"
+                    >
+                      <Github size={18} />
+                      Backend
+                    </a>
 
                     <a
-                      href="/pdf/project-report.pdf" // replace with your PDF file path
+                      href={project.githubFrontendUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-all flex-2 text-center"
+                    >
+                      <Github size={18} />
+                      Frontend
+                    </a>
+
+                    <a
+                      href="/pdf/project-report.pdf"
                       download
-                      className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                      className="flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-all flex-2 text-center"
                     >
                       <Download size={18} />
                       Project Report
                     </a>
 
                     <a
-                      href="/pdf/debug-report.pdf" // replace with your PDF file path
+                      href="/pdf/debug-report.pdf"
                       download
-                      className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition-colors"
+                      className="flex items-center justify-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition-all flex-2 text-center"
                     >
                       <Download size={18} />
                       Debug Report

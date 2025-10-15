@@ -133,37 +133,40 @@ const Contact = () => {
             }`}
           >
             {/* Phone */}
-            <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-6 text-white">
+            <a
+              href="tel:+916381858714"
+              className="block bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-6 text-white hover:bg-opacity-20 transition-all"
+            >
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center flex-shrink-0">
                   <HiOutlinePhone size={24} color="#F87171" />
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">Phone</h4>
-                  <a href="tel:+916381858714" className="text-blue-100 hover:text-white transition-colors">
+                  <p className="text-blue-100 hover:text-white transition-colors">
                     +91 6381858714
-                  </a>
+                  </p>
                 </div>
               </div>
-            </div>
+            </a>
 
             {/* Email */}
-            <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-6 text-white">
+            <a
+              href="mailto:kishorebalaji880@gmail.com"
+              className="block bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-6 text-white hover:bg-opacity-20 transition-all"
+            >
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center flex-shrink-0">
                   <HiOutlineMail size={24} color="#F87171" />
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">Email</h4>
-                  <a
-                    href="mailto:kishorebalaji880@gmail.com"
-                    className="text-blue-100 hover:text-white transition-colors break-all"
-                  >
+                  <p className="text-blue-100 hover:text-white transition-colors break-all">
                     kishorebalaji880@gmail.com
-                  </a>
+                  </p>
                 </div>
               </div>
-            </div>
+            </a>
 
             {/* Location */}
             <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-6 text-white">
