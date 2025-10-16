@@ -11,17 +11,21 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-col items-center gap-4">
-            <button className="flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-all hover:scale-105 shadow-lg">
+            <a
+              href="/downloads/CompletePortfolio.zip"
+              download
+              className="flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-all hover:scale-105 shadow-lg"
+            >
               <Download size={20} />
               Download Complete Portfolio
-            </button>
+            </a>
             <p className="text-gray-400 text-sm">Get PDF or ZIP with all documents</p>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
           <p className="flex items-center justify-center gap-2">
-            Made with <Heart size={16} className="text-red-500" /> by Kishore Balaji P
+            Made with <Heart size={16} className="text-red-600" /> by Kishore Balaji P
           </p>
           <p className="mt-2 text-sm">© 2025 All rights reserved</p>
         </div>

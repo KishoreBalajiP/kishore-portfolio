@@ -34,7 +34,7 @@ const Certificates = () => {
       id: 1,
       title: 'IBM DevOps Fundamentals',
       issuer: 'IBM',
-      date: '2024',
+      date: '2025',
       description:
         'Comprehensive training in DevOps practices, CI/CD pipelines, and modern development workflows.',
       image: '/certificates/ibm-devops.png',
@@ -45,7 +45,7 @@ const Certificates = () => {
       id: 2,
       title: 'IBM Agile and Design Thinking',
       issuer: 'IBM',
-      date: '2024',
+      date: '2025',
       description:
         'Training in Agile methodologies, Scrum framework, and user-centered design thinking principles.',
       image: '/certificates/ibm-agile.png',
