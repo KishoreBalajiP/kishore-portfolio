@@ -139,7 +139,7 @@ const Contact = () => {
             >
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center flex-shrink-0">
-                  <HiOutlinePhone size={24} color="#F87171" />
+                  <HiOutlinePhone size={24} color="#0A66C2" />
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">Phone</h4>
@@ -157,7 +157,7 @@ const Contact = () => {
             >
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center flex-shrink-0">
-                  <HiOutlineMail size={24} color="#F87171" />
+                  <HiOutlineMail size={24} color="#F87171"/>
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">Email</h4>
@@ -186,7 +186,7 @@ const Contact = () => {
               <h4 className="font-semibold mb-4">Connect on Social Media</h4>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="https://linkedin.com/in/kishore-balaji"
+                  href="https://www.linkedin.com/in/kishore-balaji-p-b765672ab"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all hover:scale-110"
@@ -194,7 +194,7 @@ const Contact = () => {
                   <FaLinkedin size={24} color="#0A66C2" />
                 </a>
                 <a
-                  href="https://github.com/kishorebalaji"
+                  href="https://github.com/KishoreBalajiP"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all hover:scale-110"
@@ -202,7 +202,7 @@ const Contact = () => {
                   <FaGithub size={24} color="#333" />
                 </a>
                 <a
-                  href="https://instagram.com/yourusername"
+                  href="https://instagram.com/kxshxre22"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all hover:scale-110"
@@ -210,7 +210,7 @@ const Contact = () => {
                   <FaInstagram size={24} color="#E1306C" />
                 </a>
                 <a
-                  href="https://twitter.com/yourusername"
+                  href="https://twitter.com/@imkishore_22"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all hover:scale-110"

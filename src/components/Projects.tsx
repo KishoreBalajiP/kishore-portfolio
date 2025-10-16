@@ -36,7 +36,7 @@ const Projects = () => {
       title: 'JayaStores E-Commerce Platform',
       description:
         'A comprehensive e-commerce solution with user authentication, product browsing, shopping cart, and secure payments integration.',
-      stack: ['React', 'Node.js', 'Express.js', 'PostgreSQL', 'AWS'],
+      stack: ['React', 'Node.js', 'Express.js', 'PostgreSQL', 'AWS', 'Github Actions'],
       features: [
         'Responsive UI with modern design',
         'User authentication and authorization',
@@ -51,7 +51,7 @@ const Projects = () => {
       image: 'project1',
       liveUrl: 'https://jayastores.vercel.app',
       githubBackendUrl: 'https://github.com/KishoreBalajiP/eco_backend',
-      githubFrontendUrl: 'https://github.com/KishoreBalajiP/jayastores-frontend',
+      githubFrontendUrl: 'https://github.com/KishoreBalajiP/eco_frontend',
     },
   ];
 

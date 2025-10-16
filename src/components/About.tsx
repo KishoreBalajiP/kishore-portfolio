@@ -50,8 +50,8 @@ const About = () => {
             <h1 className="text-5xl md:text-6xl font-bold mb-4">
               Kishore Balaji P
             </h1>
-            <h1 className="text-2xl md:text-3xl text-blue-200 mb-6">
-              AWS Solution Architect & Software Developer
+            <h1 className="text-lg md:text-xl text-blue-200 mb-4">
+              Software Developer | AWS Certified Solutions Architect
             </h1>
             <p className="text-lg text-blue-100 mb-8 leading-relaxed">
               AWS Certified Solution Architect and motivated Software Developer with hands-on experience in building scalable web applications and implementing cloud and DevOps practices. Seeking a Software Developer Intern role to contribute to innovative projects and further develop technical expertise.</p>
