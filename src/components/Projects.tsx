@@ -43,17 +43,47 @@ const Projects = () => {
         'Product browsing and search',
         'Shopping cart and checkout',
         'Email notifications for order updates',
-        'Payment gateway setup (currently inactive)',
         'AI chatbot for customer support',
         'Admin dashboard for managing products and orders',
         'Cloud deployment on AWS(lambda), vercel and neon for database',
-        'Currently deployed and used by local users in my village',
       ],
       deployment: 'AWS',
       image: 'project1',
       liveUrl: 'https://jayastores.vercel.app',
       githubBackendUrl: 'https://github.com/KishoreBalajiP/eco_backend',
       githubFrontendUrl: 'https://github.com/KishoreBalajiP/eco_frontend',
+    },
+    {
+      id: 2,
+      title: 'VivasayiAI - GenAI Farming Assistant',
+      description:
+        'A domain-adapted GenAI chatbot with farming-specific knowledge base for Tamil Nadu farmers, providing weather-aware agricultural assistance with bilingual support.',
+      stack: [
+        'React',
+        'Node.js',
+        'LangChain',
+        'ChromaDB',
+        'MongoDB',
+        'AWS',
+        'Gemini AI',
+        'GitHub Actions',
+        'Docker'
+      ],
+      features: [
+        'Retrieval-Augmented Generation (RAG) pipeline to minimize hallucinations',
+        'Bilingual interface (English/Tamil) for local farmers',
+        'Real-time weather integration for Tamil Nadu districts',
+        'Voice input support with speech-to-text',
+        'Secure authentication via Amazon Cognito',
+        'CI/CD pipeline with Docker and AWS ECR',
+        'Farming-specific knowledge base with contextual responses',
+        'Responsive design optimized for mobile devices',
+      ],
+      deployment: 'AWS Lambda + Vercel',
+      image: 'project2',
+      liveUrl: 'https://vivasayiai.vercel.app',
+      githubBackendUrl: 'https://github.com/KishoreBalajiP/VivasayiAI',
+      githubFrontendUrl: 'https://github.com/KishoreBalajiP/VivasayiAI-Frontend',
     },
   ];
 
@@ -127,25 +157,29 @@ const Projects = () => {
 
                   {/* Buttons */}
                   <div className="flex flex-wrap gap-3 mt-6">
-                    <a
-                      href={project.githubBackendUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-all flex-2 text-center"
-                    >
-                      <Github size={18} />
-                      Backend
-                    </a>
+                    {project.githubBackendUrl && (
+                      <a
+                        href={project.githubBackendUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-all flex-2 text-center"
+                      >
+                        <Github size={18} />
+                        Backend
+                      </a>
+                    )}
 
-                    <a
-                      href={project.githubFrontendUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-all flex-2 text-center"
-                    >
-                      <Github size={18} />
-                      Frontend
-                    </a>
+                    {project.githubFrontendUrl && (
+                      <a
+                        href={project.githubFrontendUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-all flex-2 text-center"
+                      >
+                        <Github size={18} />
+                        Frontend
+                      </a>
+                    )}
 
                     <a
                       href="/pdf/project-report.pdf"
