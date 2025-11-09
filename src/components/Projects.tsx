@@ -1,12 +1,12 @@
-import { Github, Download, ExternalLink } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { Github, Download, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 interface Project {
   id: number;
   title: string;
   description: string;
   stack: string[];
-  features: string[];
   deployment: string;
   image: string;
   liveUrl: string;
@@ -16,16 +16,14 @@ interface Project {
 
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
+      ([entry]) => entry.isIntersecting && setIsVisible(true),
       { threshold: 0.1 }
     );
-
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
@@ -33,177 +31,180 @@ const Projects = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: 'JayaStores E-Commerce Platform',
+      title: "JayaStores E-Commerce Platform",
       description:
-        'A comprehensive e-commerce solution with user authentication, product browsing, shopping cart, and secure payments integration.',
-      stack: ['React', 'Node.js', 'Express.js', 'PostgreSQL', 'AWS', 'Github Actions'],
-      features: [
-        'Responsive UI with modern design',
-        'User authentication and authorization',
-        'Product browsing and search',
-        'Shopping cart and checkout',
-        'Email notifications for order updates',
-        'AI chatbot for customer support',
-        'Admin dashboard for managing products and orders',
-        'Cloud deployment on AWS(lambda), vercel and neon for database',
-      ],
-      deployment: 'AWS',
-      image: 'project1',
-      liveUrl: 'https://jayastores.vercel.app',
-      githubBackendUrl: 'https://github.com/KishoreBalajiP/eco_backend',
-      githubFrontendUrl: 'https://github.com/KishoreBalajiP/eco_frontend',
+        "A complete e-commerce system with authentication, secure checkout, AI chatbot, admin dashboard, Email notifications. Backend: AWS Lambda, Frontend: Vercel, Database: Neon PostgreSQL.",
+      stack: ["React", "Node.js", "Express.js", "PostgreSQL", "AWS Lambda"],
+      deployment: "AWS",
+      image: "/projects/project1.png",
+      liveUrl: "https://jayastores.vercel.app",
+      githubBackendUrl: "https://github.com/KishoreBalajiP/eco_backend",
+      githubFrontendUrl: "https://github.com/KishoreBalajiP/eco_frontend",
     },
     {
       id: 2,
-      title: 'VivasayiAI - GenAI Farming Assistant',
+      title: "VivasayiAI - GenAI Farming Assistant",
       description:
-        'A domain-adapted GenAI chatbot with farming-specific knowledge base for Tamil Nadu farmers, providing weather-aware agricultural assistance with bilingual support.',
-      stack: [
-        'React',
-        'Node.js',
-        'LangChain',
-        'ChromaDB',
-        'MongoDB',
-        'AWS',
-        'Gemini AI',
-        'GitHub Actions',
-        'Docker'
-      ],
-      features: [
-        'Retrieval-Augmented Generation (RAG) pipeline to minimize hallucinations',
-        'Bilingual interface (English/Tamil) for local farmers',
-        'Real-time weather integration for Tamil Nadu districts',
-        'Voice input support with speech-to-text',
-        'Secure authentication via Amazon Cognito',
-        'CI/CD pipeline with Docker and AWS ECR',
-        'Farming-specific knowledge base with contextual responses',
-        'Responsive design optimized for mobile devices',
-      ],
-      deployment: 'AWS Lambda + Vercel',
-      image: 'project2',
-      liveUrl: 'https://vivasayiai.vercel.app',
-      githubBackendUrl: 'https://github.com/KishoreBalajiP/VivasayiAI',
-      githubFrontendUrl: 'https://github.com/KishoreBalajiP/VivasayiAI-Frontend',
+        "A bilingual GenAI assistant for farmers with RAG pipeline, weather data, voice input, domain knowledge. Backend on AWS Lambda+Docker, frontend on Vercel.",
+      stack: ["React", "Node.js", "LangChain", "ChromaDB", "MongoDB", "AWS"],
+      deployment: "AWS Lambda + Vercel",
+      image: "/projects/project2.png",
+      liveUrl: "https://vivasayiai.vercel.app",
+      githubBackendUrl: "https://github.com/KishoreBalajiP/VivasayiAI",
+      githubFrontendUrl: "https://github.com/KishoreBalajiP/VivasayiAI-Frontend",
     },
   ];
 
   return (
-    <section id="projects" ref={sectionRef} className="py-20 bg-white">
-      <div className="container mx-auto px-6">
+    <section
+      id="projects"
+      ref={sectionRef}
+      className="relative py-20 w-full overflow-hidden text-white bg-gradient-to-b from-black via-[#0f1522] to-[#101828]"
+    >
+      {/* Glow background */}
+      <motion.div
+        className="absolute inset-0 opacity-[0.25] blur-[140px]"
+        style={{
+          background:
+            "radial-gradient(circle at 30% 20%, rgba(0,120,255,0.35), transparent 70%), radial-gradient(circle at 70% 80%, rgba(0,255,200,0.30), transparent 70%)",
+        }}
+        animate={{ x: ["0%", "5%", "-5%", "0%"], y: ["0%", "-4%", "4%", "0%"] }}
+        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      <div className="relative container mx-auto px-6">
+
+        {/* Header */}
         <div
           className={`text-center mb-12 transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Projects</h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
-            Full-stack applications showcasing modern web development practices and scalable architectures.
+          <h2 className="text-4xl font-bold mb-4">Projects</h2>
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+            Full-stack and cloud-native applications built using industry practices.
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-1 gap-8">
+        {/* Grid */}
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className={`bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-1000 hover:shadow-2xl ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              className={`bg-white/10 border border-white/10 backdrop-blur-md rounded-xl shadow-lg overflow-hidden transition-all duration-1000 hover:shadow-2xl hover:scale-[1.03] cursor-pointer ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
+              onClick={() => setSelectedProject(project)} // Opens modal ONLY
             >
-              <div className="md:flex">
-                {/* Left Box */}
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="md:w-2/5 bg-gradient-to-br from-blue-500 to-blue-700 p-12 flex items-center justify-center cursor-pointer transition-transform hover:scale-105"
-                >
-                  <div className="text-white text-center">
-                    <ExternalLink size={64} className="mx-auto mb-4" />
-                    <p className="text-xl font-semibold">{project.title}</p>
-                  </div>
-                </a>
+              <div className="h-48 overflow-hidden group">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
 
-                {/* Right Section */}
-                <div className="md:w-3/5 p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">{project.title}</h3>
-                  <p className="text-gray-600 mb-4">{project.description}</p>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
 
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-gray-900 mb-2">Tech Stack:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.stack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                <p className="text-gray-300 line-clamp-2 mb-3">
+                  {project.description}
+                </p>
 
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-gray-900 mb-2">Key Features:</h4>
-                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600">
-                      {project.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <span className="text-blue-600 mt-1">•</span>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Buttons */}
-                  <div className="flex flex-wrap gap-3 mt-6">
-                    {project.githubBackendUrl && (
-                      <a
-                        href={project.githubBackendUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-all flex-2 text-center"
-                      >
-                        <Github size={18} />
-                        Backend
-                      </a>
-                    )}
-
-                    {project.githubFrontendUrl && (
-                      <a
-                        href={project.githubFrontendUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-all flex-2 text-center"
-                      >
-                        <Github size={18} />
-                        Frontend
-                      </a>
-                    )}
-
-                    <a
-                      href="/pdf/project-report.pdf"
-                      download
-                      className="flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-all flex-2 text-center"
-                    >
-                      <Download size={18} />
-                      Project Report
-                    </a>
-
-                    <a
-                      href="/pdf/debug-report.pdf"
-                      download
-                      className="flex items-center justify-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition-all flex-2 text-center"
-                    >
-                      <Download size={18} />
-                      Debug Report
-                    </a>
-                  </div>
-                </div>
+                <p className="text-sky-300 hover:text-sky-400 flex items-center gap-1 font-medium">
+                  View Details
+                </p>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Modal */}
+        {selectedProject && (
+          <div
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+            onClick={() => setSelectedProject(null)} // Close modal
+          >
+            <div
+              className="bg-[#0f1522] text-white rounded-xl max-w-3xl w-full p-6 relative"
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+            >
+              <button
+                className="absolute top-4 right-4 text-gray-300 hover:text-white"
+                onClick={() => setSelectedProject(null)} // Close correctly
+              >
+                <X size={24} />
+              </button>
+
+              {/* CLICKING IMAGE → OPEN WEBSITE */}
+              <a href={selectedProject.liveUrl} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  className="w-full h-80 object-contain mb-6 rounded-lg hover:scale-105 transition-transform cursor-pointer"
+                />
+              </a>
+
+              <h3 className="text-2xl font-bold mb-2">{selectedProject.title}</h3>
+
+              <p className="text-gray-300 mb-4">{selectedProject.description}</p>
+
+              {/* BUTTONS IN ONE LINE */}
+              <div className="flex flex-wrap gap-3">
+
+                {selectedProject.githubBackendUrl && (
+                  <a
+                    href={selectedProject.githubBackendUrl}
+                    target="_blank"
+                    className="flex items-center gap-2 bg-gray-800 px-4 py-2 rounded-lg hover:bg-gray-700"
+                  >
+                    <Github size={16} />
+                    Backend
+                  </a>
+                )}
+
+                {selectedProject.githubFrontendUrl && (
+                  <a
+                    href={selectedProject.githubFrontendUrl}
+                    target="_blank"
+                    className="flex items-center gap-2 bg-gray-800 px-4 py-2 rounded-lg hover:bg-gray-700"
+                  >
+                    <Github size={16} />
+                    Frontend
+                  </a>
+                )}
+
+                <a
+                  href="/pdf/project-report.pdf"
+                  download
+                  className="flex items-center gap-2 bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700"
+                >
+                  <Download size={16} />
+                  Report
+                </a>
+
+                <a
+                  href="/pdf/debug-report.pdf"
+                  download
+                  className="flex items-center gap-2 bg-green-600 px-4 py-2 rounded-lg hover:bg-green-700"
+                >
+                  <Download size={16} />
+                  Debug
+                </a>
+
+                <button
+                  className="px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10"
+                  onClick={() => setSelectedProject(null)}
+                >
+                  Close
+                </button>
+
+              </div>
+            </div>
+          </div>
+        )}
+
       </div>
     </section>
   );

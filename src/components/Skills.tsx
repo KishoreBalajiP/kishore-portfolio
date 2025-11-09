@@ -1,120 +1,86 @@
-import { useEffect, useRef, useState } from 'react';
+import { motion } from "framer-motion";
 
-interface Skill {
-  name: string;
-  level: number;
-  category: 'technical' | 'soft';
-}
-
-const Skills = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-const technicalSkills: Skill[] = [
-  { name: 'AWS Solution Architect', level: 90, category: 'technical' },
-  { name: 'Devops', level: 80, category: 'technical' },
-  { name: 'JavaScript', level: 70, category: 'technical' },
-  { name: 'Python', level: 60, category: 'technical' },
-  { name: 'MERN Stack', level: 75, category: 'technical' },
-  { name: 'PostgreSQL', level: 75, category: 'technical' },
-  { name: 'Git/GitHub', level: 85, category: 'technical' },
-  { name: 'REST API', level: 70, category: 'technical' },
+const technicalSkills = [
+  { name: "AWS Solution Architect", logo: "https://cdn-icons-png.flaticon.com/512/873/873120.png" },
+  { name: "DevOps", logo: "https://cdn-icons-png.flaticon.com/512/5969/5969059.png" },
+  { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+  { name: "MERN Stack", logo: "https://cdn-icons-png.flaticon.com/512/4248/4248443.png" },
+  { name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+  { name: "Git / GitHub", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+  { name: "REST API", logo: "https://cdn-icons-png.flaticon.com/512/1688/1688400.png" },
+  { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+  { name: "Jenkins", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" },
+  { name: "Terraform", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" },
 ];
 
+const softSkills = [
+  { name: "Problem Solving", logo: "https://cdn-icons-png.flaticon.com/512/1995/1995612.png" },
+  { name: "Teamwork", logo: "https://cdn-icons-png.flaticon.com/512/1995/1995503.png" },
+  { name: "Time Management", logo: "https://cdn-icons-png.flaticon.com/512/2920/2920224.png" },
+  { name: "Adaptability", logo: "https://cdn-icons-png.flaticon.com/512/1995/1995543.png" },
+  { name: "Communication", logo: "https://cdn-icons-png.flaticon.com/512/1995/1995667.png" },
+];
 
-  const softSkills: Skill[] = [
-    { name: 'Problem-solving', level: 70, category: 'soft' },
-    { name: 'Teamwork', level: 85, category: 'soft' },
-    { name: 'Time Management', level: 85, category: 'soft' },
-    { name: 'Adaptability', level: 90, category: 'soft' },
-    { name: 'Communication', level: 80, category: 'soft' },
-  ];
-
-  const SkillBar = ({ skill, delay }: { skill: Skill; delay: number }) => (
-    <div
-      className={`transition-all duration-1000`}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-        transitionDelay: `${delay}ms`,
-      }}
-    >
-      <div className="flex justify-between mb-2">
-        <span className="font-medium text-gray-700">{skill.name}</span>
-        <span className="text-gray-500">{skill.level}%</span>
-      </div>
-      <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
-        <div
-          className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-1500 ease-out"
-          style={{
-            width: isVisible ? `${skill.level}%` : '0%',
-            transitionDelay: `${delay}ms`,
-          }}
-        />
-      </div>
-    </div>
-  );
-
+export default function Skills() {
   return (
-    <section id="skills" ref={sectionRef} className="py-20 bg-white">
-      <div className="container mx-auto px-6">
-        <div
-          className={`text-center mb-12 transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Skills & Expertise</h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            A comprehensive set of technical and interpersonal skills developed through
-            projects and continuous learning
-          </p>
+    <section
+      id="skills"
+      className="relative w-full py-20 bg-gradient-to-b from-black via-[#0f1522] to-[#101828] text-white"
+    >
+      {/* Title */}
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="text-center text-5xl md:text-6xl font-extrabold mb-12"
+      >
+        <span className="bg-gradient-to-r from-white via-sky-200 to-teal-200 bg-clip-text text-transparent">
+          Skills & Expertise
+        </span>
+      </motion.h2>
+
+      {/* Technical Skills */}
+      <div className="max-w-6xl mx-auto px-6 mb-16">
+        <h3 className="text-2xl font-bold mb-6">Technical Skills</h3>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {technicalSkills.map((skill, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.05 }}
+              className="bg-white/10 border border-white/10 rounded-2xl backdrop-blur-md p-4 flex flex-col items-center hover:scale-105 transition-all"
+            >
+              <img src={skill.logo} className="w-12 h-12 mb-2" />
+              <p className="text-sm text-teal-200 font-semibold text-center">{skill.name}</p>
+            </motion.div>
+          ))}
         </div>
+      </div>
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-              <div className="w-2 h-8 bg-blue-600 rounded-full" />
-              Technical Skills
-            </h3>
-            <div className="space-y-6">
-              {technicalSkills.map((skill, index) => (
-                <SkillBar key={skill.name} skill={skill} delay={index * 100} />
-              ))}
-            </div>
-          </div>
+      {/* Soft Skills */}
+      <div className="max-w-6xl mx-auto px-6">
+        <h3 className="text-2xl font-bold mb-6">Soft Skills</h3>
 
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-              <div className="w-2 h-8 bg-green-600 rounded-full" />
-              Soft Skills
-            </h3>
-            <div className="space-y-6">
-              {softSkills.map((skill, index) => (
-                <SkillBar key={skill.name} skill={skill} delay={index * 100} />
-              ))}
-            </div>
-          </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {softSkills.map((skill, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.05 }}
+              className="bg-white/10 border border-white/10 rounded-2xl backdrop-blur-md p-4 flex flex-col items-center hover:scale-105 transition-all"
+            >
+              <img src={skill.logo} className="w-12 h-12 mb-2" />
+              <p className="text-sm text-teal-200 font-semibold text-center">{skill.name}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default Skills;
+}

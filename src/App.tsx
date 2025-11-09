@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Header from './components/Header';
 import About from './components/About';
-import Resume from './components/Resume';
+// import Resume from './components/Resume';
 import Skills from './components/Skills';
 import Certificates from './components/Certificates';
 import Projects from './components/Projects';
@@ -18,7 +18,7 @@ function App() {
       <Header />
       <main>
         <About />
-        <Resume />
+        {/* <Resume /> */}
         <Skills />
         <Certificates />
         <Projects />

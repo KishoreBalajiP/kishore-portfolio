@@ -1,5 +1,6 @@
-import { Download, Calendar, ExternalLink, X } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { Calendar, ExternalLink, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 interface Certificate {
   id: number;
@@ -7,9 +8,9 @@ interface Certificate {
   issuer: string;
   date: string;
   description: string;
-  image: string;      // PNG preview
-  file: string;       // PDF file
-  verifyLink: string; // Official verification link
+  image: string;
+  file: string;
+  verifyLink: string;
 }
 
 const Certificates = () => {
@@ -32,62 +33,82 @@ const Certificates = () => {
   const certificates: Certificate[] = [
     {
       id: 1,
-      title: 'IBM DevOps Fundamentals',
-      issuer: 'IBM',
-      date: '2025',
+      title: "IBM DevOps Fundamentals",
+      issuer: "IBM",
+      date: "2025",
       description:
-        'Comprehensive training in DevOps practices, CI/CD pipelines, and modern development workflows.',
-      image: '/certificates/ibm-devops.png',
-      file: '/certificates/ibm-devops.pdf',
-      verifyLink: 'https://courses.vit.skillsnetwork.site/certificates/9b48215b7c63400abd616dd6b7e36d5b',
+        "Comprehensive training in DevOps practices, CI/CD pipelines, and modern development workflows.",
+      image: "/certificates/ibm-devops.png",
+      file: "/certificates/ibm-devops.pdf",
+      verifyLink:
+        "https://courses.vit.skillsnetwork.site/certificates/9b48215b7c63400abd616dd6b7e36d5b",
     },
     {
       id: 2,
-      title: 'IBM Agile and Design Thinking',
-      issuer: 'IBM',
-      date: '2025',
+      title: "IBM Agile and Design Thinking",
+      issuer: "IBM",
+      date: "2025",
       description:
-        'Training in Agile methodologies, Scrum framework, and user-centered design thinking principles.',
-      image: '/certificates/ibm-agile.png',
-      file: '/certificates/ibm-agile.pdf',
-      verifyLink: 'https://courses.vit.skillsnetwork.site/certificates/904610c2705b4549a8840a24281692cf',
+        "Training in Agile methodologies, Scrum framework, and user-centered design thinking principles.",
+      image: "/certificates/ibm-agile.png",
+      file: "/certificates/ibm-agile.pdf",
+      verifyLink:
+        "https://courses.vit.skillsnetwork.site/certificates/904610c2705b4549a8840a24281692cf",
     },
     {
       id: 3,
-      title: 'Python (Basic)',
-      issuer: 'HackerRank',
-      date: '2024',
+      title: "Python (Basic)",
+      issuer: "HackerRank",
+      date: "2024",
       description:
-        'Certification demonstrating proficiency in Python programming fundamentals and problem-solving.',
-      image: '/certificates/hackerrank-python.png',
-      file: '/certificates/hackerrank-python.pdf',
-      verifyLink: 'https://www.hackerrank.com/certificates/iframe/a71532c85c45',
+        "Certification demonstrating proficiency in Python programming fundamentals and problem-solving.",
+      image: "/certificates/hackerrank-python.png",
+      file: "/certificates/hackerrank-python.pdf",
+      verifyLink: "https://www.hackerrank.com/certificates/iframe/a71532c85c45",
     },
     {
       id: 4,
-      title: 'Java (Basic)',
-      issuer: 'HackerRank',
-      date: '2024',
+      title: "Java (Basic)",
+      issuer: "HackerRank",
+      date: "2024",
       description:
-        'Certification covering core Java concepts, OOP principles, and coding best practices.',
-      image: '/certificates/hackerrank-java.png',
-      file: '/certificates/hackerrank-java.pdf',
-      verifyLink: 'https://www.hackerrank.com/certificates/iframe/a4b31aefdfe5',
+        "Certification covering core Java concepts, OOP principles, and coding best practices.",
+      image: "/certificates/hackerrank-java.png",
+      file: "/certificates/hackerrank-java.pdf",
+      verifyLink: "https://www.hackerrank.com/certificates/iframe/a4b31aefdfe5",
     },
   ];
 
   return (
-    <section id="certificates" ref={sectionRef} className="py-20 bg-gray-50">
-      <div className="container mx-auto px-6">
+    <section
+      id="certificates"
+      ref={sectionRef}
+      className="relative py-20 w-full overflow-hidden text-white bg-gradient-to-b from-black via-[#0f1522] to-[#101828]"
+    >
+      {/* Background glow */}
+      <motion.div
+        className="absolute inset-0 opacity-[0.25] blur-[140px]"
+        style={{
+          background:
+            "radial-gradient(circle at 20% 30%, rgba(0,120,255,0.35), transparent 65%), radial-gradient(circle at 80% 20%, rgba(0,255,200,0.30), transparent 65%), radial-gradient(circle at 50% 80%, rgba(150,80,255,0.35), transparent 70%)",
+        }}
+        animate={{ x: ["0%", "6%", "-4%", "0%"], y: ["0%", "-4%", "4%", "0%"] }}
+        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      <div className="relative container mx-auto px-6">
         {/* Section Header */}
         <div
           className={`text-center mb-12 transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-10"
           }`}
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Certificates</h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Professional certifications showcasing expertise in development, DevOps, and programming.
+          <h2 className="text-4xl font-bold text-white mb-4">Certificates</h2>
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+            Professional certifications showcasing expertise in development,
+            DevOps, and programming.
           </p>
         </div>
 
@@ -96,13 +117,14 @@ const Certificates = () => {
           {certificates.map((cert, index) => (
             <div
               key={cert.id}
-              className={`bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-1000 hover:shadow-2xl hover:scale-105 cursor-pointer ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              className={`rounded-xl bg-white/10 border border-white/10 shadow-lg overflow-hidden backdrop-blur-md transition-all duration-1000 hover:shadow-2xl hover:scale-105 cursor-pointer ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
               onClick={() => setSelectedCert(cert)}
             >
-              {/* Certificate Image */}
               <div className="h-48 overflow-hidden">
                 <img
                   src={cert.image}
@@ -111,15 +133,16 @@ const Certificates = () => {
                 />
               </div>
 
-              {/* Info */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{cert.title}</h3>
-                <p className="text-gray-600 mb-2">{cert.issuer}</p>
-                <div className="flex items-center gap-2 text-gray-500 mb-4">
+                <h3 className="text-xl font-bold text-white mb-2">
+                  {cert.title}
+                </h3>
+                <p className="text-gray-300 mb-2">{cert.issuer}</p>
+                <div className="flex items-center gap-2 text-gray-400 mb-4">
                   <Calendar size={16} />
                   <span>{cert.date}</span>
                 </div>
-                <button className="flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700">
+                <button className="flex items-center gap-2 text-sky-300 font-medium hover:text-sky-400">
                   View Details
                 </button>
               </div>
@@ -130,47 +153,39 @@ const Certificates = () => {
         {/* Modal */}
         {selectedCert && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
             onClick={() => setSelectedCert(null)}
           >
             <div
-              className="bg-white rounded-xl max-w-3xl w-full p-6 relative animate-fade-in"
+              className="bg-[#0f1522] text-white rounded-xl max-w-3xl w-full p-6 relative"
               onClick={(e) => e.stopPropagation()}
             >
               <button
-                className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
+                className="absolute top-4 right-4 text-gray-300 hover:text-white"
                 onClick={() => setSelectedCert(null)}
               >
                 <X size={24} />
               </button>
 
-              {/* Preview Image */}
               <img
                 src={selectedCert.image}
                 alt={selectedCert.title}
                 className="w-full h-80 object-contain mb-6 rounded-lg"
               />
 
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">{selectedCert.title}</h3>
-              <p className="text-gray-600 mb-2">{selectedCert.issuer}</p>
-              <div className="flex items-center gap-2 text-gray-500 mb-4">
+              <h3 className="text-2xl font-bold mb-2">
+                {selectedCert.title}
+              </h3>
+              <p className="text-gray-300 mb-2">{selectedCert.issuer}</p>
+
+              <div className="flex items-center gap-2 text-gray-400 mb-4">
                 <Calendar size={16} />
                 <span>{selectedCert.date}</span>
               </div>
-              <p className="text-gray-700 mb-6">{selectedCert.description}</p>
+
+              <p className="text-gray-200 mb-6">{selectedCert.description}</p>
 
               <div className="flex flex-wrap gap-4">
-                {/* Download PDF */}
-                <a
-                  href={selectedCert.file}
-                  download
-                  className="flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
-                >
-                  <Download size={20} />
-                  Download PDF
-                </a>
-
-                {/* Verification Link */}
                 <a
                   href={selectedCert.verifyLink}
                   target="_blank"
@@ -181,10 +196,9 @@ const Certificates = () => {
                   Verify Certificate
                 </a>
 
-                {/* Close */}
                 <button
                   onClick={() => setSelectedCert(null)}
-                  className="px-6 py-3 rounded-lg font-medium border border-gray-300 hover:bg-gray-50 transition-colors"
+                  className="px-6 py-3 rounded-lg font-medium border border-white/20 hover:bg-white/10 transition-colors"
                 >
                   Close
                 </button>
