@@ -114,7 +114,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2">
           {/* Form */}
           <div
             className={`transition-all duration-1000 delay-200 ${
@@ -129,7 +129,7 @@ const Contact = () => {
               </h3>
 
               {submitted ? (
-                <div className="bg-green-500/20 border border-green-400/30 p-6 rounded-lg text-center text-green-200">
+                <div className="bg-green-500/20 border border-green-400/30 p-4 sm:p-6 rounded-lg text-center text-green-200">
                   <p className="text-xl font-semibold mb-2">
                     Thank you for your message!
                   </p>
@@ -213,7 +213,7 @@ const Contact = () => {
               className="block bg-white/10 border border-white/10 backdrop-blur-lg rounded-xl p-6 text-white hover:bg-white/20 transition-all"
             >
               <div className="flex items-start gap-4 whitespace-nowrap">
-                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-full flex items-center justify-center">
                   <HiOutlinePhone size={24} color="#0A66C2" />
                 </div>
                 <div>
