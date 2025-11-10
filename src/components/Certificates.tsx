@@ -157,7 +157,7 @@ const Certificates = () => {
             onClick={() => setSelectedCert(null)}
           >
             <div
-              className="bg-[#0f1522] text-white rounded-xl max-w-3xl w-full p-6 relative"
+              className="bg-[#0f1522] text-white rounded-xl max-w-3xl w-full p-4 sm:p-6 relative overflow-y-auto max-h-[90vh]"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -167,30 +167,36 @@ const Certificates = () => {
                 <X size={24} />
               </button>
 
+              {/* Responsive Image */}
               <img
                 src={selectedCert.image}
                 alt={selectedCert.title}
-                className="w-full h-80 object-contain mb-6 rounded-lg"
+                className="w-full h-48 sm:h-80 object-contain mb-6 rounded-lg"
               />
 
-              <h3 className="text-2xl font-bold mb-2">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2">
                 {selectedCert.title}
               </h3>
-              <p className="text-gray-300 mb-2">{selectedCert.issuer}</p>
+              <p className="text-gray-300 mb-2 text-sm sm:text-base">
+                {selectedCert.issuer}
+              </p>
 
-              <div className="flex items-center gap-2 text-gray-400 mb-4">
+              <div className="flex items-center gap-2 text-gray-400 mb-4 text-sm sm:text-base">
                 <Calendar size={16} />
                 <span>{selectedCert.date}</span>
               </div>
 
-              <p className="text-gray-200 mb-6">{selectedCert.description}</p>
+              <p className="text-gray-200 mb-6 text-sm sm:text-base">
+                {selectedCert.description}
+              </p>
 
-              <div className="flex flex-wrap gap-4">
+              {/* Buttons responsive */}
+              <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href={selectedCert.verifyLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+                  className="flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
                 >
                   <ExternalLink size={20} />
                   Verify Certificate

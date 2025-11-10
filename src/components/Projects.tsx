@@ -95,7 +95,7 @@ const Projects = () => {
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
-              onClick={() => setSelectedProject(project)} // Opens modal ONLY
+              onClick={() => setSelectedProject(project)}
             >
               <div className="h-48 overflow-hidden group">
                 <img
@@ -124,40 +124,44 @@ const Projects = () => {
         {selectedProject && (
           <div
             className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-            onClick={() => setSelectedProject(null)} // Close modal
+            onClick={() => setSelectedProject(null)}
           >
             <div
-              className="bg-[#0f1522] text-white rounded-xl max-w-3xl w-full p-6 relative"
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+              className="bg-[#0f1522] text-white rounded-xl max-w-3xl w-full p-4 sm:p-6 relative max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
             >
               <button
                 className="absolute top-4 right-4 text-gray-300 hover:text-white"
-                onClick={() => setSelectedProject(null)} // Close correctly
+                onClick={() => setSelectedProject(null)}
               >
                 <X size={24} />
               </button>
 
-              {/* CLICKING IMAGE → OPEN WEBSITE */}
+              {/* RESPONSIVE IMAGE */}
               <a href={selectedProject.liveUrl} target="_blank" rel="noopener noreferrer">
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
-                  className="w-full h-80 object-contain mb-6 rounded-lg hover:scale-105 transition-transform cursor-pointer"
+                  className="w-full h-48 sm:h-80 object-contain mb-6 rounded-lg hover:scale-105 transition-transform cursor-pointer"
                 />
               </a>
 
-              <h3 className="text-2xl font-bold mb-2">{selectedProject.title}</h3>
+              <h3 className="text-xl sm:text-2xl font-bold mb-2">
+                {selectedProject.title}
+              </h3>
 
-              <p className="text-gray-300 mb-4">{selectedProject.description}</p>
+              <p className="text-gray-300 mb-4 text-sm sm:text-base">
+                {selectedProject.description}
+              </p>
 
-              {/* BUTTONS IN ONE LINE */}
-              <div className="flex flex-wrap gap-3">
+              {/* RESPONSIVE BUTTONS */}
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3">
 
                 {selectedProject.githubBackendUrl && (
                   <a
                     href={selectedProject.githubBackendUrl}
                     target="_blank"
-                    className="flex items-center gap-2 bg-gray-800 px-4 py-2 rounded-lg hover:bg-gray-700"
+                    className="flex items-center justify-center gap-2 bg-gray-800 px-4 py-2 rounded-lg hover:bg-gray-700 w-full sm:w-auto"
                   >
                     <Github size={16} />
                     Backend
@@ -168,7 +172,7 @@ const Projects = () => {
                   <a
                     href={selectedProject.githubFrontendUrl}
                     target="_blank"
-                    className="flex items-center gap-2 bg-gray-800 px-4 py-2 rounded-lg hover:bg-gray-700"
+                    className="flex items-center justify-center gap-2 bg-gray-800 px-4 py-2 rounded-lg hover:bg-gray-700 w-full sm:w-auto"
                   >
                     <Github size={16} />
                     Frontend
@@ -178,7 +182,7 @@ const Projects = () => {
                 <a
                   href="/pdf/project-report.pdf"
                   download
-                  className="flex items-center gap-2 bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700"
+                  className="flex items-center justify-center gap-2 bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700 w-full sm:w-auto"
                 >
                   <Download size={16} />
                   Report
@@ -187,14 +191,14 @@ const Projects = () => {
                 <a
                   href="/pdf/debug-report.pdf"
                   download
-                  className="flex items-center gap-2 bg-green-600 px-4 py-2 rounded-lg hover:bg-green-700"
+                  className="flex items-center justify-center gap-2 bg-green-600 px-4 py-2 rounded-lg hover:bg-green-700 w-full sm:w-auto"
                 >
                   <Download size={16} />
                   Debug
                 </a>
 
                 <button
-                  className="px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10"
+                  className="px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 w-full sm:w-auto"
                   onClick={() => setSelectedProject(null)}
                 >
                   Close
