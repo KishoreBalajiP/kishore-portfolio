@@ -21,10 +21,9 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative min-h-screen w-full overflow-hidden text-white bg-gradient-to-b from-black via-[#0f1522] to-[#101828] flex items-center justify-center px-6 py-20"
+      className="relative min-h-screen w-full overflow-hidden text-white bg-gradient-to-b from-black via-[#0f1522] to-[#101828] flex items-center justify-center px-6 py-12 sm:py-20"
     >
-
-      {/* ✅ Static Glow Background (same as Skills) */}
+      {/* Glow background */}
       <div
         className="absolute inset-0 opacity-30 blur-[140px]"
         style={{
@@ -33,12 +32,11 @@ export default function About() {
         }}
       />
 
-      {/* ✅ Content */}
-      <div className="relative z-10 max-w-3xl text-center">
-
+      {/* Content */}
+      <div className="relative z-10 max-w-xl sm:max-w-2xl text-center">
         {/* Name */}
         <h1
-          className={`text-5xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent transition-all duration-1000 ${
+          className={`text-3xl sm:text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
@@ -47,7 +45,7 @@ export default function About() {
 
         {/* Subtitle */}
         <h2
-          className={`text-lg md:text-xl text-sky-200 mb-6 transition-all duration-1000 delay-200 ${
+          className={`text-base sm:text-lg md:text-xl text-sky-200 mb-6 transition-all duration-1000 delay-200 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
@@ -56,7 +54,7 @@ export default function About() {
 
         {/* Bio */}
         <p
-          className={`text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto mb-10 transition-all duration-1000 delay-300 ${
+          className={`text-base sm:text-lg text-gray-300 leading-relaxed mx-auto mb-10 transition-all duration-1000 delay-300 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
