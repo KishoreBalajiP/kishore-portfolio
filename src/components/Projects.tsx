@@ -12,6 +12,8 @@ interface Project {
   liveUrl: string;
   githubBackendUrl?: string;
   githubFrontendUrl?: string;
+  report: string;
+  debugReport: string;
 }
 
 const Projects = () => {
@@ -40,6 +42,8 @@ const Projects = () => {
       liveUrl: "https://jayastores.vercel.app",
       githubBackendUrl: "https://github.com/KishoreBalajiP/eco_backend",
       githubFrontendUrl: "https://github.com/KishoreBalajiP/eco_frontend",
+      report: "/pdf/jayastores-project-report.pdf",
+      debugReport: "/pdf/jayastores-debug-report.pdf",
     },
     {
       id: 2,
@@ -52,6 +56,8 @@ const Projects = () => {
       liveUrl: "https://vivasayiai.vercel.app",
       githubBackendUrl: "https://github.com/KishoreBalajiP/VivasayiAI",
       githubFrontendUrl: "https://github.com/KishoreBalajiP/VivasayiAI-Frontend",
+      report: "/pdf/vivasayiai-project-report.pdf",
+      debugReport: "/pdf/vivasayiai-debug-report.pdf",
     },
   ];
 
@@ -61,7 +67,6 @@ const Projects = () => {
       ref={sectionRef}
       className="relative py-20 w-full overflow-hidden text-white bg-gradient-to-b from-black via-[#0f1522] to-[#101828]"
     >
-      {/* Glow background */}
       <motion.div
         className="absolute inset-0 opacity-[0.25] blur-[140px]"
         style={{
@@ -74,7 +79,6 @@ const Projects = () => {
 
       <div className="relative container mx-auto px-6">
 
-        {/* Header */}
         <div
           className={`text-center mb-12 transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
@@ -86,7 +90,6 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Grid */}
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <div
@@ -107,11 +110,7 @@ const Projects = () => {
 
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-
-                <p className="text-gray-300 line-clamp-2 mb-3">
-                  {project.description}
-                </p>
-
+                <p className="text-gray-300 line-clamp-2 mb-3">{project.description}</p>
                 <p className="text-sky-300 hover:text-sky-400 flex items-center gap-1 font-medium">
                   View Details
                 </p>
@@ -120,7 +119,6 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Modal */}
         {selectedProject && (
           <div
             className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
@@ -137,7 +135,6 @@ const Projects = () => {
                 <X size={24} />
               </button>
 
-              {/* RESPONSIVE IMAGE */}
               <a href={selectedProject.liveUrl} target="_blank" rel="noopener noreferrer">
                 <img
                   src={selectedProject.image}
@@ -146,15 +143,9 @@ const Projects = () => {
                 />
               </a>
 
-              <h3 className="text-xl sm:text-2xl font-bold mb-2">
-                {selectedProject.title}
-              </h3>
+              <h3 className="text-xl sm:text-2xl font-bold mb-2">{selectedProject.title}</h3>
+              <p className="text-gray-300 mb-4 text-sm sm:text-base">{selectedProject.description}</p>
 
-              <p className="text-gray-300 mb-4 text-sm sm:text-base">
-                {selectedProject.description}
-              </p>
-
-              {/* RESPONSIVE BUTTONS */}
               <div className="flex flex-col sm:flex-row flex-wrap gap-3">
 
                 {selectedProject.githubBackendUrl && (
@@ -180,7 +171,7 @@ const Projects = () => {
                 )}
 
                 <a
-                  href="/pdf/project-report.pdf"
+                  href={selectedProject.report}
                   download
                   className="flex items-center justify-center gap-2 bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700 w-full sm:w-auto"
                 >
@@ -189,7 +180,7 @@ const Projects = () => {
                 </a>
 
                 <a
-                  href="/pdf/debug-report.pdf"
+                  href={selectedProject.debugReport}
                   download
                   className="flex items-center justify-center gap-2 bg-green-600 px-4 py-2 rounded-lg hover:bg-green-700 w-full sm:w-auto"
                 >
