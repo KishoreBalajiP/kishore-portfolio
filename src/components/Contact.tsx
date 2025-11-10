@@ -208,8 +208,11 @@ const Contact = () => {
             }`}
           >
             {/* Phone */}
-            <a className="block bg-white/10 border border-white/10 backdrop-blur-lg rounded-xl p-6 text-white hover:bg-white/20 transition-all">
-              <div className="flex items-start gap-4">
+            <a
+              href="tel:+916381858714"
+              className="block bg-white/10 border border-white/10 backdrop-blur-lg rounded-xl p-6 text-white hover:bg-white/20 transition-all"
+            >
+              <div className="flex items-start gap-4 whitespace-nowrap">
                 <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
                   <HiOutlinePhone size={24} color="#0A66C2" />
                 </div>
@@ -223,8 +226,11 @@ const Contact = () => {
             </a>
 
             {/* Email */}
-            <a className="block bg-white/10 border border-white/10 backdrop-blur-lg rounded-xl p-6 text-white hover:bg-white/20 transition-all">
-              <div className="flex items-start gap-4">
+            <a
+              href="mailto:kishorebalaji880@gmail.com"
+              className="block bg-white/10 border border-white/10 backdrop-blur-lg rounded-xl p-6 text-white hover:bg-white/20 transition-all"
+            >
+              <div className="flex items-start gap-4 whitespace-nowrap">
                 <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
                   <HiOutlineMail size={24} color="#F87171" />
                 </div>
@@ -242,7 +248,7 @@ const Contact = () => {
               onClick={() => setIsModalOpen(true)}
               className="cursor-pointer bg-white/10 border border-white/10 backdrop-blur-lg rounded-xl p-6 text-white hover:bg-white/20 transition-all"
             >
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-4 whitespace-nowrap">
                 <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
                   <HiLocationMarker size={24} color="#F87171" />
                 </div>
@@ -258,7 +264,7 @@ const Contact = () => {
               <h4 className="font-semibold mb-4">
                 Connect on Social Media
               </h4>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex gap-4 overflow-x-auto no-scrollbar whitespace-nowrap">
                 <a
                   href="https://www.linkedin.com/in/kishore-balaji-p-b765672ab"
                   className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 hover:scale-110 transition"
