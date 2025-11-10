@@ -260,7 +260,7 @@ const Contact = () => {
             </div>
 
             {/* Social */}
-            <div className="bg-white/10 border border-white/10 backdrop-blur-lg rounded-xl p-6 text-white">
+            <div className="bg-white/10 border border-white/10 backdrop-blur-lg rounded-xl p-6 text-white overflow-visible">
               <h4 className="font-semibold mb-4">
                 Connect on Social Media
               </h4>
