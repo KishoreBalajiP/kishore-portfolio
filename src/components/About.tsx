@@ -52,16 +52,18 @@ export default function About() {
           Software Developer | AWS Solutions Architect
         </h2>
 
-        {/* Bio */}
+        {/* Updated Bio */}
         <p
           className={`text-base sm:text-lg text-gray-300 leading-relaxed mx-auto mb-10 transition-all duration-1000 delay-300 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          AWS Certified Solution Architect and motivated Software Developer with
-          hands-on experience in building scalable web applications and implementing
-          cloud and DevOps practices. Seeking a Software Developer Intern role to
-          contribute to innovative projects and further develop technical expertise.
+          AWS Certified Solutions Architect – Associate and Software Developer with comprehensive,
+          hands-on experience in the end-to-end application lifecycle. Proven ability to design scalable,
+          secure cloud infrastructures on AWS, develop full-stack web applications, and implement robust
+          DevOps practices including CI/CD pipelines, containerization with Docker, and infrastructure automation.
+          Seeking a challenging role to leverage this integrated skill set to build, deploy, and optimize
+          efficient and reliable software systems.
         </p>
 
         {/* Resume Button */}

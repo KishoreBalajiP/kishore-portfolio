@@ -126,27 +126,41 @@ const Projects = () => {
           >
             <div
               className="bg-[#0f1522] text-white rounded-xl max-w-3xl w-full p-4 sm:p-6 relative max-h-[90vh] overflow-y-auto"
+              style={{ zIndex: 9999 }} // ensures X is always visible
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 className="absolute top-4 right-4 text-gray-300 hover:text-white"
+                style={{ zIndex: 10000 }}
                 onClick={() => setSelectedProject(null)}
               >
                 <X size={24} />
               </button>
 
-              <a href={selectedProject.liveUrl} target="_blank" rel="noopener noreferrer">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="w-full h-48 sm:h-80 object-contain mb-6 rounded-lg hover:scale-105 transition-transform cursor-pointer"
-                />
-              </a>
+              {/* Image - NO link click */}
+              <img
+                src={selectedProject.image}
+                alt={selectedProject.title}
+                className="w-full h-48 sm:h-80 object-contain mb-6 rounded-lg cursor-pointer"
+              />
 
               <h3 className="text-xl sm:text-2xl font-bold mb-2">{selectedProject.title}</h3>
               <p className="text-gray-300 mb-4 text-sm sm:text-base">{selectedProject.description}</p>
 
+              {/* Buttons */}
               <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+
+                {/* Live Demo First */}
+                {selectedProject.liveUrl && (
+                  <a
+                    href={selectedProject.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 bg-sky-600 px-4 py-2 rounded-lg hover:bg-sky-700 w-full sm:w-auto"
+                  >
+                    Live Demo
+                  </a>
+                )}
 
                 {selectedProject.githubBackendUrl && (
                   <a
