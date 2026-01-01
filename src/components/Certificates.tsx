@@ -1,4 +1,10 @@
-import { Calendar, ExternalLink, X, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Calendar,
+  ExternalLink,
+  X,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -22,36 +28,35 @@ const Certificates = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
+      ([entry]) => entry.isIntersecting && setIsVisible(true),
       { threshold: 0.1 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  // Keyboard Navigation
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (!selectedCert) return;
       if (e.key === "ArrowLeft") handlePrev();
       if (e.key === "ArrowRight") handleNext();
+      if (e.key === "Escape") setSelectedCert(null);
     };
-
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
   }, [selectedCert, currentIndex]);
 
   const handlePrev = () => {
-    if (!selectedCert) return;
     if (currentIndex > 0) setCurrentIndex((prev) => prev - 1);
   };
 
   const handleNext = () => {
-    if (!selectedCert) return;
-    if (currentIndex < selectedCert.images.length - 1)
+    if (
+      selectedCert &&
+      currentIndex < selectedCert.images.length - 1
+    ) {
       setCurrentIndex((prev) => prev + 1);
+    }
   };
 
   const certificates: Certificate[] = [
@@ -71,7 +76,6 @@ const Certificates = () => {
       verifyLink:
         "https://www.credly.com/badges/6e171721-2c30-43b0-a00f-7b264d450fe0/public_url",
     },
-
     {
       id: 3,
       title: "Python (Basic)",
@@ -84,7 +88,6 @@ const Certificates = () => {
       verifyLink:
         "https://www.hackerrank.com/certificates/iframe/a71532c85c45",
     },
-
     {
       id: 4,
       title: "Java (Basic)",
@@ -97,7 +100,6 @@ const Certificates = () => {
       verifyLink:
         "https://www.hackerrank.com/certificates/iframe/a4b31aefdfe5",
     },
-
     {
       id: 6,
       title: "SQL (Basic)",
@@ -109,7 +111,6 @@ const Certificates = () => {
       verifyLink:
         "https://www.hackerrank.com/certificates/iframe/9f1230ec4c41",
     },
-
     {
       id: 1,
       title: "IBM DevOps Fundamentals",
@@ -122,7 +123,6 @@ const Certificates = () => {
       verifyLink:
         "https://courses.vit.skillsnetwork.site/certificates/9b48215b7c63400abd616dd6b7e36d5b",
     },
-
     {
       id: 2,
       title: "IBM Agile and Design Thinking",
@@ -141,10 +141,12 @@ const Certificates = () => {
     <section
       id="certificates"
       ref={sectionRef}
-      className="relative py-20 w-full overflow-hidden text-white bg-gradient-to-b from-black via-[#0f1522] to-[#101828]"
+      className="relative py-16 sm:py-20 w-full overflow-hidden text-white
+      bg-gradient-to-b from-black via-[#0f1522] to-[#101828]"
     >
+      {/* Glow Background */}
       <motion.div
-        className="absolute inset-0 opacity-[0.25] blur-[140px]"
+        className="absolute inset-0 opacity-25 blur-[90px] sm:blur-[140px]"
         style={{
           background:
             "radial-gradient(circle at 20% 30%, rgba(0,120,255,0.35), transparent 65%), radial-gradient(circle at 80% 20%, rgba(0,255,200,0.30), transparent 65%), radial-gradient(circle at 50% 80%, rgba(150,80,255,0.35), transparent 70%)",
@@ -153,54 +155,59 @@ const Certificates = () => {
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative container mx-auto px-6">
-
+      <div className="relative max-w-[min(92vw,72rem)] mx-auto px-4 sm:px-6">
         {/* Header */}
         <div
           className={`text-center mb-12 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-10"
           }`}
         >
-          <h2 className="text-4xl font-bold text-white mb-4">Certificates</h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Professional certifications showcasing expertise in development, DevOps, and programming.
+          <h2 className="text-[clamp(1.8rem,6vw,2.5rem)] font-bold mb-4">
+            Certificates
+          </h2>
+          <p className="text-gray-300 text-[clamp(0.95rem,3.5vw,1.1rem)] max-w-2xl mx-auto">
+            Professional certifications showcasing expertise in development,
+            DevOps, and programming.
           </p>
         </div>
 
         {/* Grid */}
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 sm:gap-8">
           {certificates.map((cert, index) => (
             <div
               key={cert.id}
-              className={`rounded-xl bg-white/10 border border-white/10 shadow-lg overflow-hidden backdrop-blur-md transition-all duration-1000 hover:scale-105 cursor-pointer ${
+              onClick={() => {
+                setSelectedCert(cert);
+                setCurrentIndex(0);
+              }}
+              className={`rounded-xl bg-white/10 border border-white/10
+              backdrop-blur-md shadow-lg overflow-hidden cursor-pointer
+              transition-all duration-700 hover:scale-[1.03] ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
-              onClick={() => {
-                setSelectedCert(cert);
-                setCurrentIndex(0);
-              }}
             >
-              <div className="h-48 overflow-hidden">
+              <div className="h-44 sm:h-48 overflow-hidden">
                 <img
                   src={cert.images[0]}
                   alt={cert.title}
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover"
                 />
               </div>
 
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2">{cert.title}</h3>
+              <div className="p-5 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-bold mb-2">
+                  {cert.title}
+                </h3>
                 <p className="text-gray-300 mb-2">{cert.issuer}</p>
-                <div className="flex items-center gap-2 text-gray-400 mb-4">
-                  <Calendar size={16} />
-                  <span>{cert.date}</span>
+                <div className="flex items-center gap-2 text-gray-400 text-sm">
+                  <Calendar size={14} />
+                  {cert.date}
                 </div>
-                <button className="flex items-center gap-2 text-sky-300 font-medium hover:text-sky-400">
-                  View Details
-                </button>
               </div>
             </div>
           ))}
@@ -209,104 +216,122 @@ const Certificates = () => {
         {/* Modal */}
         {selectedCert && (
           <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50
+            flex items-center justify-center p-3 sm:p-4"
             onClick={() => setSelectedCert(null)}
           >
             <div
-              className="bg-[#0f1522] text-white rounded-xl max-w-3xl w-full p-4 sm:p-6 relative overflow-y-auto max-h-[90vh]"
+              className="bg-[#0f1522] rounded-xl w-full max-w-3xl
+              max-h-[90svh] overflow-y-auto p-4 sm:p-6 relative"
               onClick={(e) => e.stopPropagation()}
             >
+              {/* CLOSE BUTTON FIXED */}
               <button
-                className="absolute top-4 right-4 text-gray-300 hover:text-white"
+                className="absolute top-4 right-4 z-50 pointer-events-auto text-gray-300 hover:text-white"
                 onClick={() => setSelectedCert(null)}
               >
-                <X size={24} />
+                <X size={22} />
               </button>
 
-              {/* Arrows Disabled on Limit */}
-              {selectedCert.images.length > 1 && (
-                <>
-                  <button
-                    onClick={handlePrev}
-                    disabled={currentIndex === 0}
-                    className={`absolute left-4 top-[45%] -translate-y-1/2 p-2 rounded-full backdrop-blur-sm ${
-                      currentIndex === 0
-                        ? "bg-gray-500/40 cursor-not-allowed"
-                        : "bg-black/45 hover:bg-black/70"
-                    }`}
-                  >
-                    <ChevronLeft size={30} />
-                  </button>
+              {/* Image + Arrows */}
+              <div className="relative mb-6">
+                <motion.img
+                  key={currentIndex}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  onDragEnd={(e, info) => {
+                    if (info.offset.x < -100) handleNext();
+                    if (info.offset.x > 100) handlePrev();
+                  }}
+                  src={selectedCert.images[currentIndex]}
+                  alt={`${selectedCert.title} ${currentIndex + 1}`}
+                  className="w-full h-44 sm:h-80 object-contain rounded-lg pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4 }}
+                />
 
-                  <button
-                    onClick={handleNext}
-                    disabled={currentIndex === selectedCert.images.length - 1}
-                    className={`absolute right-4 top-[45%] -translate-y-1/2 p-2 rounded-full backdrop-blur-sm ${
-                      currentIndex === selectedCert.images.length - 1
-                        ? "bg-gray-500/40 cursor-not-allowed"
-                        : "bg-black/45 hover:bg-black/70"
-                    }`}
-                  >
-                    <ChevronRight size={30} />
-                  </button>
-                </>
-              )}
+                {selectedCert.images.length > 1 && (
+                  <>
+                    <button
+                      onClick={handlePrev}
+                      disabled={currentIndex === 0}
+                      className={`absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full
+                      ${
+                        currentIndex === 0
+                          ? "bg-gray-500/40 cursor-not-allowed"
+                          : "bg-black/60 hover:bg-black/80"
+                      }`}
+                    >
+                      <ChevronLeft size={26} />
+                    </button>
 
-              {/* Swipe Image */}
-              <motion.img
-                key={currentIndex}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                onDragEnd={(e, info) => {
-                  if (info.offset.x < -100 && currentIndex < selectedCert.images.length - 1)
-                    handleNext();
-                  if (info.offset.x > 100 && currentIndex > 0)
-                    handlePrev();
-                }}
-                src={selectedCert.images[currentIndex]}
-                alt={`${selectedCert.title} ${currentIndex + 1}`}
-                className="w-full h-48 sm:h-80 object-contain rounded-lg mb-6"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4 }}
-              />
+                    <button
+                      onClick={handleNext}
+                      disabled={
+                        currentIndex ===
+                        selectedCert.images.length - 1
+                      }
+                      className={`absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full
+                      ${
+                        currentIndex ===
+                        selectedCert.images.length - 1
+                          ? "bg-gray-500/40 cursor-not-allowed"
+                          : "bg-black/60 hover:bg-black/80"
+                      }`}
+                    >
+                      <ChevronRight size={26} />
+                    </button>
+                  </>
+                )}
+              </div>
 
-              <h3 className="text-xl sm:text-2xl font-bold mb-2">{selectedCert.title}</h3>
-              <p className="text-gray-300 mb-2 text-sm sm:text-base">{selectedCert.issuer}</p>
+              <h3 className="text-xl sm:text-2xl font-bold mb-2">
+                {selectedCert.title}
+              </h3>
+              <p className="text-gray-300 mb-2">
+                {selectedCert.issuer}
+              </p>
 
-              <div className="flex items-center gap-2 text-gray-400 mb-2 text-sm sm:text-base">
-                <Calendar size={16} />
-                <span>{selectedCert.date}</span>
+              <div className="flex items-center gap-2 text-gray-400 mb-2 text-sm">
+                <Calendar size={14} />
+                {selectedCert.date}
               </div>
 
               {selectedCert.expiry && (
-                <p className="text-gray-400 text-sm mb-4">{selectedCert.expiry}</p>
+                <p className="text-gray-400 text-sm mb-4">
+                  {selectedCert.expiry}
+                </p>
               )}
 
-              <p className="text-gray-200 mb-6 text-sm sm:text-base">{selectedCert.description}</p>
+              <p className="text-gray-200 mb-6 text-sm sm:text-base">
+                {selectedCert.description}
+              </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href={selectedCert.verifyLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+                  className="flex items-center justify-center gap-2
+                  bg-green-600 text-white px-6 py-3 rounded-lg
+                  hover:bg-green-700 transition-colors"
                 >
-                  <ExternalLink size={20} /> Verify Certificate
+                  <ExternalLink size={18} />
+                  Verify Certificate
                 </a>
 
                 <button
                   onClick={() => setSelectedCert(null)}
-                  className="px-6 py-3 rounded-lg font-medium border border-white/20 hover:bg-white/10 transition-colors"
+                  className="px-6 py-3 rounded-lg font-medium
+                  border border-white/20 hover:bg-white/10 transition-colors"
                 >
                   Close
                 </button>
               </div>
-
             </div>
           </div>
         )}
-
       </div>
     </section>
   );
