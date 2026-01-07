@@ -193,14 +193,14 @@ const Projects = () => {
                   Report
                 </a>
 
-                <a
+                {/* <a
                   href={selectedProject.debugReport}
                   download
                   className="flex items-center justify-center gap-2 bg-green-600 px-4 py-2 rounded-lg hover:bg-green-700 w-full sm:w-auto"
                 >
                   <Download size={16} />
                   Debug
-                </a>
+                </a> */}
 
                 <button
                   className="px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 w-full sm:w-auto"
