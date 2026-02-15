@@ -266,7 +266,7 @@ const Contact = () => {
               </h4>
               <div className="flex gap-4 overflow-x-auto no-scrollbar whitespace-nowrap">
                 <a
-                  href="https://www.linkedin.com/in/kishore-balaji-p-b765672ab"
+                  href="https://www.linkedin.com/in/KishoreBalajiP"
                   className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 hover:scale-110 transition"
                 >
                   <FaLinkedin size={24} color="#0A66C2" />
