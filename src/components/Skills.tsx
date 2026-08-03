@@ -1,108 +1,161 @@
-import { motion } from "framer-motion";
+import {
+  Boxes,
+  Braces,
+  CloudCog,
+  Database,
+  Layout,
+  Monitor,
+  Server,
+  Smartphone,
+  Sparkles,
+} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+import Container from './ui/Container';
+import Reveal from './ui/Reveal';
 
-const technicalSkills = [
-  { 
-    name: "AWS Solution Architect", 
-    logo: "https://cdn-icons-png.flaticon.com/512/873/873120.png" 
+type SkillCategory = {
+  title: string;
+  icon: LucideIcon;
+  skills: string[];
+};
+
+const categories: SkillCategory[] = [
+  {
+    title: 'Cloud',
+    icon: CloudCog,
+    skills: ['AWS Architecture', 'Lambda', 'EC2', 'S3', 'IAM', 'Serverless'],
   },
-  { 
-    name: "DevOps", 
-    logo: "https://cdn-icons-png.flaticon.com/512/5969/5969059.png" 
+  {
+    title: 'DevOps',
+    icon: Boxes,
+    skills: ['Docker', 'CI/CD Pipelines', 'Git & GitHub', 'Infrastructure Automation'],
   },
-  { 
-    name: "JavaScript", 
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
+  {
+    title: 'Frontend',
+    icon: Layout,
+    skills: ['React', 'TypeScript', 'Tailwind CSS', 'Responsive UI'],
   },
-  { 
-    name: "MERN Stack", 
-    logo: "https://cdn-icons-png.flaticon.com/512/4248/4248443.png" 
+  {
+    title: 'Backend',
+    icon: Server,
+    skills: ['Node.js', 'Express.js', 'REST API', 'Authentication'],
   },
-  { 
-    name: "PostgreSQL", 
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" 
+  {
+    title: 'Databases',
+    icon: Database,
+    skills: ['PostgreSQL', 'MongoDB', 'Neon', 'Data Modeling'],
   },
-  { 
-    name: "Git / GitHub", 
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" 
+  {
+    title: 'Languages',
+    icon: Braces,
+    skills: ['JavaScript', 'Python', 'Java', 'SQL'],
   },
-  { 
-    name: "REST API", 
-    logo: "https://cdn-icons-png.flaticon.com/512/1688/1688400.png" 
-  }
+  {
+    title: 'Mobile',
+    icon: Smartphone,
+    skills: ['React Native', 'Cross-Platform Apps'],
+  },
+  {
+    title: 'Tools',
+    icon: Monitor,
+    skills: ['VS Code', 'Postman', 'Vercel', 'GitHub Actions'],
+  },
 ];
 
-const softSkills = [
-  { name: "Problem Solving", logo: "https://cdn-icons-png.flaticon.com/512/1995/1995612.png" },
-  { name: "Teamwork", logo: "https://cdn-icons-png.flaticon.com/512/1995/1995503.png" },
-  { name: "Time Management", logo: "https://cdn-icons-png.flaticon.com/512/2920/2920224.png" },
-  { name: "Adaptability", logo: "https://cdn-icons-png.flaticon.com/512/1995/1995543.png" },
-  { name: "Communication", logo: "https://cdn-icons-png.flaticon.com/512/1995/1995667.png" },
+const strengths = [
+  'Problem Solving',
+  'Teamwork',
+  'Time Management',
+  'Adaptability',
+  'Communication',
 ];
 
 export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative w-full py-16 sm:py-20 bg-gradient-to-b from-black via-[#0f1522] to-[#101828] text-white"
+      aria-label="Skills"
+      style={{ backgroundColor: '#F3F6FA' }}
     >
-      {/* Title */}
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="text-center text-3xl sm:text-5xl md:text-6xl font-extrabold mb-10 sm:mb-12"
-      >
-        <span className="bg-gradient-to-r from-white via-sky-200 to-teal-200 bg-clip-text text-transparent">
-          Skills & Expertise
-        </span>
-      </motion.h2>
-
-      {/* Technical Skills */}
-      <div className="max-w-6xl mx-auto px-6 mb-14 sm:mb-16">
-        <h3 className="text-xl sm:text-2xl font-bold mb-6">Technical Skills</h3>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
-          {technicalSkills.map((skill, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.05 }}
-              className="bg-white/10 border border-white/10 rounded-2xl backdrop-blur-md p-4 sm:p-6 flex flex-col items-center hover:scale-105 transition-all"
-            >
-              <img src={skill.logo} className="w-10 h-10 sm:w-12 sm:h-12 mb-2" />
-              <p className="text-xs sm:text-sm text-teal-200 font-semibold text-center">
-                {skill.name}
+      <Container>
+        <div className="section-y">
+          <Reveal>
+            <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
+              <div>
+                <p className="kicker">Expertise</p>
+                <h2 className="mt-5 font-display text-[36px] font-semibold leading-[1.08] tracking-tight text-ink-900 sm:text-[44px] lg:text-[56px]">
+                  Skills &amp; Expertise
+                </h2>
+              </div>
+              <p className="max-w-[420px] text-[17px] text-slate-600 lg:text-right">
+                From infrastructure to interface — a full-stack toolkit built for
+                cloud-native engineering.
               </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+            </div>
+          </Reveal>
 
-      {/* Soft Skills */}
-      <div className="max-w-6xl mx-auto px-6">
-        <h3 className="text-xl sm:text-2xl font-bold mb-6">Soft Skills</h3>
+          <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
+            {categories.map((category, index) => (
+              <Reveal key={category.title} delay={index * 40} className="h-full">
+                <article
+                  className="flex h-full flex-col rounded-[18px] border border-[#E2E8F0] bg-white p-4"
+                  style={{
+                    minHeight: '170px',
+                    boxShadow: '0 8px 24px rgba(15,23,42,.05)',
+                  }}
+                >
+                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white">
+                    <category.icon size={16} aria-hidden="true" />
+                  </span>
+                  <h3 className="mt-3 font-display text-[16px] font-semibold text-slate-900 sm:text-[18px]">
+                    {category.title}
+                  </h3>
+                  <ul className="mt-2 flex flex-col gap-1.5">
+                    {category.skills.map((skill) => (
+                      <li
+                        key={skill}
+                        className="text-[14px] font-medium leading-[1.7] text-slate-700 sm:text-[15px]"
+                      >
+                        {skill}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </Reveal>
+            ))}
+          </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
-          {softSkills.map((skill, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.05 }}
-              className="bg-white/10 border border-white/10 rounded-2xl backdrop-blur-md p-4 sm:p-6 flex flex-col items-center hover:scale-105 transition-all"
+          <Reveal delay={120}>
+            <div className="mt-8 flex flex-col gap-5 rounded-[18px] border border-[#E2E8F0] bg-white p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7"
+              style={{ boxShadow: '0 8px 24px rgba(15,23,42,.05)' }}
             >
-              <img src={skill.logo} className="w-10 h-10 sm:w-12 sm:h-12 mb-2" />
-              <p className="text-xs sm:text-sm text-teal-200 font-semibold text-center">
-                {skill.name}
-              </p>
-            </motion.div>
-          ))}
+              <div className="flex items-center gap-4">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-600 text-white">
+                  <Sparkles size={18} aria-hidden="true" />
+                </span>
+                <div>
+                  <h3 className="font-display text-[18px] font-semibold text-slate-900">
+                    Core Strengths
+                  </h3>
+                  <p className="mt-0.5 text-[15px] text-slate-500">
+                    The soft skills behind the systems.
+                  </p>
+                </div>
+              </div>
+              <ul className="flex flex-wrap gap-2">
+                {strengths.map((strength) => (
+                  <li
+                    key={strength}
+                    className="rounded-full border border-[#E2E8F0] bg-[#F3F6FA] px-3.5 py-1.5 text-[15px] font-medium text-slate-700"
+                  >
+                    {strength}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

@@ -1,89 +1,85 @@
-import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Download } from 'lucide-react';
+import { useScrollSpy } from '../hooks/useScrollSpy';
 
-const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const navItems = [
+  { id: 'about', label: 'Home' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'certificates', label: 'Certificates' },
+  { id: 'contact', label: 'Contact' },
+];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
-    }
-  };
-
-  const navItems = [
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'certificates', label: 'Certificates' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' },
-  ];
+export default function Header() {
+  const activeId = useScrollSpy(navItems.map((i) => i.id));
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 
-        ${isScrolled ? 'bg-[#0b0f1a] shadow-lg border-b border-blue-900/30' : 'bg-[#0b0f1a]'}
-      `}
-    >
-      <nav className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo / Name */}
-          <button
-            onClick={() => scrollToSection('about')}
-            className="text-2xl font-bold text-white"
-          >
-            Kishore Balaji P
-          </button>
+    <>
+      <a
+        href="#about"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:rounded-md focus:bg-brand-600 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+      >
+        Skip to content
+      </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="font-medium text-white/80 hover:text-sky-300 transition-colors"
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Mobile Menu Icon */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white"
+      <header
+        className="fixed inset-x-0 top-0 z-40 transition-all duration-300"
+        style={{
+          backgroundColor: 'rgba(255,255,255,0.88)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderBottom: '1px solid #E5E7EB',
+          boxShadow: '0 4px 18px rgba(15,23,42,0.05)',
+        }}
+      >
+        <div className="container-wide flex h-20 items-center justify-between">
+          <a
+            href="#about"
+            className="group flex items-center gap-3 rounded-md text-slate-900 transition-colors"
           >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-ink-900 font-display text-base font-bold text-blue-300 ring-1 ring-inset ring-white/10 transition-transform duration-200 group-hover:-translate-y-0.5">
+              KB
+            </span>
+            <span className="hidden font-display text-[15px] font-semibold tracking-tight sm:block">
+              Kishore Balaji&nbsp;P
+            </span>
+          </a>
+
+          <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
+            {navItems.map((item) => {
+              const isActive = activeId === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  aria-current={isActive ? 'true' : undefined}
+                  className={`relative rounded-md px-3 py-2 text-[15px] font-medium transition-colors ${
+                    isActive
+                      ? 'text-brand-700'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  {item.label}
+                  <span
+                    aria-hidden="true"
+                    className={`absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-brand-600 transition-transform duration-200 ${
+                      isActive ? 'scale-x-100' : 'scale-x-0'
+                    }`}
+                  />
+                </a>
+              );
+            })}
+          </nav>
+
+          <a
+            href="/pdf/resume.pdf"
+            download="Kishore_Balaji_Resume.pdf"
+            className="inline-flex h-11 items-center gap-2 rounded-xl bg-ink-900 px-5 text-[15px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+          >
+            <Download size={16} aria-hidden="true" />
+            <span className="hidden sm:inline">Resume</span>
+          </a>
         </div>
-
-        {/* Mobile Dropdown */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="block w-full text-left py-3 text-lg font-medium text-white/90 hover:text-sky-300 transition-colors"
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        )}
-      </nav>
-    </header>
+      </header>
+    </>
   );
-};
-
-export default Header;
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Kishore Balaji P — AWS Solutions Architect & Full Stack Developer",
+  "short_name": "Kishore Portfolio",
+  "description": "Portfolio of Kishore Balaji P, an AWS Certified Solutions Architect and DevOps Engineer from Chennai, India.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0B1220",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
