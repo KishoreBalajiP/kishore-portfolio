@@ -61,7 +61,7 @@ export default function Projects() {
             </div>
           </Reveal>
 
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">
+          <div className="mt-10 grid grid-cols-2 gap-3 md:mt-12 md:gap-5 lg:grid-cols-3">
             {projects.map((project, index) => (
               <Reveal key={project.id} delay={index * 80} className="h-full">
                 <article
@@ -69,7 +69,7 @@ export default function Projects() {
                   style={{ boxShadow: '0 8px 24px rgba(15,23,42,.05)' }}
                 >
                   <div
-                    className="relative overflow-hidden bg-[#F3F6FA]"
+                    className="relative aspect-[16/10] overflow-hidden bg-[#F3F6FA]"
                     style={{ height: 170 }}
                   >
                     <img
@@ -81,24 +81,24 @@ export default function Projects() {
                       height={500}
                       className="absolute inset-0 h-full w-full object-cover object-top"
                     />
-                    <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-ink-900/75 px-2.5 py-1 text-[12px] font-medium text-white backdrop-blur-sm">
+                    <span className="absolute left-3 top-3 hidden items-center gap-1.5 rounded-full border border-white/25 bg-ink-900/75 px-2.5 py-1 text-[12px] font-medium text-white backdrop-blur-sm md:inline-flex">
                       <Cloud size={13} aria-hidden="true" />
                       {project.deployment}
                     </span>
                   </div>
 
-                  <div className="flex flex-1 flex-col p-5 sm:p-6">
-                    <h3 className="font-display text-[20px] font-bold tracking-tight text-slate-900 sm:text-[22px]">
+                  <div className="flex flex-1 flex-col gap-3 p-3.5 md:gap-0 md:p-6">
+                    <h3 className="font-display text-[15px] font-bold leading-[1.3] tracking-tight text-slate-900 md:text-[22px]">
                       {project.title}
                     </h3>
                     <p
-                      className="mt-3 text-[15px] leading-[1.7]"
+                      className="mt-3 hidden text-[15px] leading-[1.7] md:block"
                       style={{ color: '#475569' }}
                     >
                       {project.description}
                     </p>
 
-                    <div className="mt-4 flex flex-wrap gap-1.5">
+                    <div className="mt-4 hidden flex-wrap gap-1.5 md:flex">
                       {project.stack.map((tech) => (
                         <span
                           key={tech}
@@ -110,7 +110,21 @@ export default function Projects() {
                       ))}
                     </div>
 
-                    <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-[#E2E8F0] pt-4">
+                    <div className="mt-3 md:hidden">
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-xl bg-brand-600 px-3 text-[13px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                        >
+                          Live Demo
+                          <ArrowUpRight size={14} aria-hidden="true" />
+                        </a>
+                      )}
+                    </div>
+
+                    <div className="mt-auto hidden grid-cols-3 gap-2 border-t border-[#E2E8F0] pt-4 md:grid">
                       {project.githubBackendUrl && (
                         <a
                           href={project.githubBackendUrl}
@@ -118,11 +132,10 @@ export default function Projects() {
                           rel="noopener noreferrer"
                           title="Backend source repository on GitHub"
                           aria-label="Backend source on GitHub"
-                          className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-ink-900 text-[14px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-ink-800 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-                          style={{ height: 38, paddingLeft: 12, paddingRight: 12 }}
+                          className="inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-xl bg-ink-900 px-3 text-[13px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-ink-800 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 md:text-[14px]"
                         >
                           <Github size={14} aria-hidden="true" />
-                          Backend Source
+                          Backend
                         </a>
                       )}
                       {project.githubFrontendUrl && (
@@ -132,11 +145,10 @@ export default function Projects() {
                           rel="noopener noreferrer"
                           title="Frontend source repository on GitHub"
                           aria-label="Frontend source on GitHub"
-                          className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-ink-900 text-[14px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-ink-800 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-                          style={{ height: 38, paddingLeft: 12, paddingRight: 12 }}
+                          className="inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-xl bg-ink-900 px-3 text-[13px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-ink-800 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 md:text-[14px]"
                         >
                           <Github size={14} aria-hidden="true" />
-                          Frontend Source
+                          Frontend
                         </a>
                       )}
                       {project.liveUrl && (
@@ -144,8 +156,7 @@ export default function Projects() {
                           href={project.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="ml-auto inline-flex items-center justify-center gap-1.5 rounded-lg bg-brand-600 text-[14px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-                          style={{ height: 38, paddingLeft: 12, paddingRight: 12 }}
+                          className="inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-xl bg-brand-600 px-3 text-[13px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 md:text-[14px]"
                         >
                           Live Demo
                           <ArrowUpRight size={14} aria-hidden="true" />

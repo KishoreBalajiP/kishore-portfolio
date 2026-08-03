@@ -145,7 +145,7 @@ export default function Certificates() {
             </div>
           </Reveal>
 
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
+          <div className="mt-10 grid grid-cols-2 gap-3 md:mt-12 md:gap-6 lg:grid-cols-3">
             {certificates.map((cert, index) => (
               <Reveal key={cert.id} delay={index * 40} className="h-full">
                 <article
@@ -154,7 +154,7 @@ export default function Certificates() {
                   onClick={() => openCert(cert)}
                 >
                   <div
-                    className="relative bg-[#F3F6FA]"
+                    className="relative aspect-[16/11] overflow-hidden bg-[#F3F6FA]"
                     style={{ height: 150 }}
                   >
                     <img
@@ -166,20 +166,20 @@ export default function Certificates() {
                       height={270}
                       className="h-full w-full object-contain p-3"
                     />
-                    <span className="absolute right-2.5 top-2.5 rounded-full border border-[#E2E8F0] bg-white px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-700 shadow-[0_1px_2px_rgb(15_23_42_/_0.04)]">
+                    <span className="absolute right-2.5 top-2.5 hidden max-w-[calc(100%-1.25rem)] truncate rounded-full border border-brand-600/20 bg-ink-900/85 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-white shadow-sm backdrop-blur-md md:inline-block md:text-[11px]">
                       {cert.issuer}
                     </span>
                   </div>
 
-                  <div className="flex flex-1 flex-col p-4 sm:p-5">
-                    <h3 className="font-display text-[20px] font-bold leading-[1.3] text-slate-900 sm:text-[22px]">
+                  <div className="flex flex-1 flex-col gap-2 p-3.5 md:gap-0 md:p-5">
+                    <h3 className="font-display text-[15px] font-bold leading-[1.3] text-slate-900 md:text-[22px]">
                       {cert.title}
                     </h3>
-                    <p className="mt-2 text-[15px] leading-[1.7] text-slate-600 sm:text-[16px]">
+                    <p className="mt-2 hidden text-[15px] leading-[1.7] text-slate-600 md:block md:text-[16px]">
                       {cert.description}
                     </p>
 
-                    <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[15px] font-medium text-slate-700 sm:text-[16px]">
+                    <div className="mt-4 hidden flex-wrap items-center gap-x-4 gap-y-2 text-[15px] font-medium text-slate-700 md:flex md:text-[16px]">
                       <span className="inline-flex items-center gap-2">
                         <Calendar size={15} aria-hidden="true" className="text-slate-500" />
                         <span>{cert.date}</span>
@@ -195,14 +195,10 @@ export default function Certificates() {
                     <button
                       type="button"
                       onClick={() => openCert(cert)}
-                      className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#E2E8F0] bg-white px-4 text-[15px] font-semibold text-brand-700 transition-all duration-200 hover:border-brand-600 hover:bg-brand-50 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-                      style={{ height: 40 }}
+                      className="mt-auto inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-[#E2E8F0] bg-white px-4 text-[14px] font-semibold text-brand-700 transition-all duration-200 hover:border-brand-600 hover:bg-brand-50 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
                     >
                       View Certificate
-                      <ExternalLink
-                        size={14}
-                        aria-hidden="true"
-                      />
+                      <ExternalLink size={14} aria-hidden="true" />
                     </button>
                   </div>
                 </article>

@@ -8,7 +8,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 5rem;
     -webkit-text-size-adjust: 100%;
   }
 
@@ -142,6 +142,15 @@
   }
   .pb-safe-nav {
     padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 0.5rem);
+  }
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
   }
 }
 

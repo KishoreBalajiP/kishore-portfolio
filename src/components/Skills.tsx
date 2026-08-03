@@ -23,42 +23,42 @@ const categories: SkillCategory[] = [
   {
     title: 'Cloud',
     icon: CloudCog,
-    skills: ['AWS Architecture', 'Lambda', 'EC2', 'S3', 'IAM', 'Serverless'],
+    skills: ['AWS'],
   },
   {
     title: 'DevOps',
     icon: Boxes,
-    skills: ['Docker', 'CI/CD Pipelines', 'Git & GitHub', 'Infrastructure Automation'],
+    skills: ['Docker', 'CI/CD'],
   },
   {
     title: 'Frontend',
     icon: Layout,
-    skills: ['React', 'TypeScript', 'Tailwind CSS', 'Responsive UI'],
+    skills: ['React', 'TypeScript'],
   },
   {
     title: 'Backend',
     icon: Server,
-    skills: ['Node.js', 'Express.js', 'REST API', 'Authentication'],
+    skills: ['Node.js', 'Express'],
   },
   {
     title: 'Databases',
     icon: Database,
-    skills: ['PostgreSQL', 'MongoDB', 'Neon', 'Data Modeling'],
+    skills: ['PostgreSQL', 'MongoDB'],
   },
   {
     title: 'Languages',
     icon: Braces,
-    skills: ['JavaScript', 'Python', 'Java', 'SQL'],
+    skills: ['JavaScript', 'Python', 'Java'],
   },
   {
     title: 'Mobile',
     icon: Smartphone,
-    skills: ['React Native', 'Cross-Platform Apps'],
+    skills: ['React Native'],
   },
   {
     title: 'Tools',
     icon: Monitor,
-    skills: ['VS Code', 'Postman', 'Vercel', 'GitHub Actions'],
+    skills: ['Git', 'Postman'],
   },
 ];
 
@@ -94,28 +94,25 @@ export default function Skills() {
             </div>
           </Reveal>
 
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
             {categories.map((category, index) => (
               <Reveal key={category.title} delay={index * 40} className="h-full">
-                <article
-                  className="flex h-full flex-col rounded-[18px] border border-[#E2E8F0] bg-white p-4"
-                  style={{
-                    minHeight: '170px',
-                    boxShadow: '0 8px 24px rgba(15,23,42,.05)',
-                  }}
-                >
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white">
-                    <category.icon size={16} aria-hidden="true" />
-                  </span>
-                  <h3 className="mt-3 font-display text-[16px] font-semibold text-slate-900 sm:text-[18px]">
-                    {category.title}
-                  </h3>
-                  <ul className="mt-2 flex flex-col gap-1.5">
-                    {category.skills.map((skill) => (
-                      <li
-                        key={skill}
-                        className="text-[14px] font-medium leading-[1.7] text-slate-700 sm:text-[15px]"
-                      >
+                 <article
+                   className="flex h-full min-h-0 flex-col rounded-[18px] border border-[#E2E8F0] bg-white p-3.5 sm:p-4"
+                   style={{ boxShadow: '0 8px 24px rgba(15,23,42,.05)' }}
+                 >
+                   <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-600 text-white sm:h-8 sm:w-8">
+                     <category.icon size={15} aria-hidden="true" />
+                   </span>
+                   <h3 className="mt-2.5 font-display text-[16px] font-semibold text-slate-900 sm:text-[18px]">
+                     {category.title}
+                   </h3>
+                   <ul className="mt-1.5 flex flex-col gap-0.5">
+                     {category.skills.map((skill) => (
+                       <li
+                         key={skill}
+                         className="text-[13px] font-medium leading-[1.55] text-slate-700 sm:text-[14px]"
+                       >
                         {skill}
                       </li>
                     ))}

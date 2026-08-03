@@ -7,23 +7,41 @@ export function useScrollSpy(ids: string[], offset = 200) {
   const key = ids.join(',');
 
   useEffect(() => {
-    const onScroll = () => {
+    let frame = 0;
+
+    const updateActiveId = () => {
       const position = window.scrollY + offset;
+      const isAtPageEnd =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
       let current = idsRef.current[0] ?? '';
 
-      for (const id of idsRef.current) {
-        const el = document.getElementById(id);
-        if (el && el.offsetTop <= position) {
-          current = id;
+      if (isAtPageEnd) {
+        current = idsRef.current[idsRef.current.length - 1] ?? current;
+      } else {
+        for (const id of idsRef.current) {
+          const el = document.getElementById(id);
+          if (el && el.offsetTop <= position) {
+            current = id;
+          }
         }
       }
 
-      setActiveId(current);
+      setActiveId((previous) => (previous === current ? previous : current));
     };
 
-    onScroll();
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateActiveId);
+    };
+
+    updateActiveId();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener('resize', onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
   }, [key, offset]);
 
   return activeId;
