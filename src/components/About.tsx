@@ -71,11 +71,11 @@ export default function About() {
       />
 
       <div
-        className="container-wide relative grid items-center gap-12 md:gap-16 lg:gap-20"
-        style={{ paddingTop: 140, paddingBottom: 80 }}
+        className="container-wide relative grid items-center gap-8 md:gap-10 lg:gap-12"
+        style={{ paddingTop: 112, paddingBottom: 64 }}
       >
         <div
-          className="grid items-center gap-12 md:gap-16 lg:grid-cols-12 lg:gap-20"
+          className="grid items-center gap-8 md:gap-10 lg:grid-cols-12 lg:gap-12"
           style={{ paddingTop: 0 }}
         >
           {/* Story */}
@@ -85,13 +85,13 @@ export default function About() {
             </Reveal>
 
             <Reveal delay={80}>
-              <h1 className="mt-6 font-display text-[40px] font-semibold leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-[58px] md:mt-8 md:text-[68px] lg:text-[76px]">
+              <h1 className="mt-3 font-display text-[32px] font-semibold leading-[1.08] tracking-[-0.02em] text-ink-900 sm:text-[42px] lg:text-[52px]">
                 Kishore Balaji&nbsp;P
               </h1>
             </Reveal>
 
             <Reveal delay={160}>
-              <p className="mt-5 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-brand-600/15 bg-white/70 px-4 py-1.5 font-display text-[14px] font-medium leading-none text-slate-700 shadow-[0_1px_2px_rgba(15,23,42,0.04)] backdrop-blur sm:text-[17px] md:mt-6">
+              <p className="mt-4 inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 rounded-full border border-brand-600/15 bg-white/70 px-3 py-1 font-display text-[13px] font-medium leading-none text-slate-700 shadow-[0_1px_2px_rgba(15,23,42,0.04)] backdrop-blur sm:text-[14px]">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-success-600" />
                 Solutions Architect
                 <span className="text-brand-500">·</span>
@@ -102,7 +102,7 @@ export default function About() {
             </Reveal>
 
             <Reveal delay={240}>
-              <p className="mt-6 max-w-paragraph text-[16px] leading-[1.75] text-slate-600 md:mt-8 md:text-[17px] md:leading-[1.8] lg:text-[18px]">
+              <p className="mt-4 max-w-paragraph text-[15px] leading-[1.7] text-slate-600 md:text-[16px]">
                 AWS Certified Solutions Architect - Associate and DevOps Engineer with
                 hands-on experience across the full application lifecycle, specializing in
                 scalable and secure AWS cloud architectures, CI/CD pipelines, Docker-based
@@ -112,11 +112,11 @@ export default function About() {
             </Reveal>
 
             <Reveal delay={320}>
-              <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">
+              <div className="mt-6 flex flex-col gap-2.5 sm:flex-row">
                 <a
                   href="/pdf/resume.pdf"
                   download="Kishore_Balaji_Resume.pdf"
-                  className="group relative inline-flex h-12 items-center justify-center gap-2 overflow-hidden rounded-xl bg-ink-900 px-7 text-[15px] font-semibold text-white shadow-[0_18px_40px_-12px_rgba(15,23,42,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-ink-800 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 sm:text-[16px]"
+                  className="group relative inline-flex h-10 items-center justify-center gap-2 overflow-hidden rounded-lg bg-ink-900 px-5 text-sm font-semibold text-white shadow-[0_12px_28px_-12px_rgba(15,23,42,0.4)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-ink-800 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
                 >
                   <span
                     aria-hidden="true"
@@ -126,16 +126,16 @@ export default function About() {
                         'linear-gradient(120deg, rgba(37,99,235,0) 0%, rgba(37,99,235,0.35) 50%, rgba(37,99,235,0) 100%)',
                     }}
                   />
-                  <Download size={17} aria-hidden="true" />
+                  <Download size={16} aria-hidden="true" />
                   Download Resume
                 </a>
                 <a
                   href="#projects"
-                  className="group inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-[#E2E8F0] bg-white/80 px-7 text-[15px] font-semibold text-slate-800 shadow-[0_8px_24px_-12px_rgba(15,23,42,0.18)] backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-600 hover:text-brand-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 sm:text-[16px]"
+                  className="group inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[#E2E8F0] bg-white/80 px-5 text-sm font-semibold text-slate-800 shadow-[0_4px_14px_-8px_rgba(15,23,42,0.18)] backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-600 hover:text-brand-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
                 >
                   View Projects
                   <ArrowRight
-                    size={17}
+                    size={16}
                     aria-hidden="true"
                     className="transition-transform duration-200 group-hover:translate-x-0.5"
                   />
@@ -144,13 +144,13 @@ export default function About() {
             </Reveal>
 
             <Reveal delay={400}>
-              <ul className="mt-8 flex flex-wrap gap-2.5 sm:mt-12">
+              <ul className="mt-6 flex flex-wrap gap-2 sm:mt-8">
                 {trustChips.map((chip) => (
                   <li
                     key={chip}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-[#E2E8F0] bg-white/80 px-3.5 py-1.5 text-[15px] font-medium text-slate-700 shadow-[0_1px_2px_rgba(15,23,42,0.04)] backdrop-blur"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-[#E2E8F0] bg-white/80 px-3 py-1 text-[13px] font-medium text-slate-700 shadow-[0_1px_2px_rgba(15,23,42,0.04)] backdrop-blur"
                   >
-                    <BadgeCheck size={13} className="text-brand-600" aria-hidden="true" />
+                    <BadgeCheck size={12} className="text-brand-600" aria-hidden="true" />
                     {chip}
                   </li>
                 ))}
@@ -158,13 +158,11 @@ export default function About() {
             </Reveal>
           </div>
 
-          {/* Profile panel — 440px wide */}
+          {/* Profile panel */}
           <div className="hidden lg:col-span-5 lg:block">
             <Reveal delay={250}>
-              <div className="mx-auto lg:ml-auto" style={{ maxWidth: 440 }}>
-                <article
-                  className="relative rounded-[20px] border border-white bg-white/85 p-7 shadow-[0_30px_60px_-25px_rgba(15,23,42,0.25)] backdrop-blur sm:p-8"
-                >
+              <div className="mx-auto lg:ml-auto" style={{ maxWidth: 400 }}>
+                <article className="card-surface relative p-5">
                   <div
                     aria-hidden="true"
                     className="pointer-events-none absolute inset-x-0 top-0 h-px"
@@ -177,37 +175,37 @@ export default function About() {
                     <p className="font-body text-eyebrow font-semibold uppercase text-slate-500">
                       Profile
                     </p>
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-[#E2E8F0] bg-[#F3F6FA] px-3 py-1 text-[13px] font-medium text-slate-600">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-[#E2E8F0] bg-[#F3F6FA] px-3 py-1 text-[12px] font-medium text-slate-600">
                       <MapPin size={12} aria-hidden="true" />
                       Chennai, India
                     </span>
                   </div>
 
-                  <ul className="mt-6 space-y-3.5">
+                  <ul className="mt-4 space-y-2.5">
                     {statRows.map((row) => (
                       <li
                         key={row.label}
-                        className="flex items-center gap-3.5"
+                        className="flex items-center gap-3"
                       >
-                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#F3F6FA] text-slate-600">
-                          <row.icon size={17} aria-hidden="true" />
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#F3F6FA] text-slate-600">
+                          <row.icon size={16} aria-hidden="true" />
                         </span>
                         <div className="min-w-0">
-                          <p className="text-[15px] font-semibold text-slate-900">
+                          <p className="text-[14px] font-semibold text-slate-900">
                             {row.label}
                           </p>
-                          <p className="truncate text-[15px] text-slate-500">{row.value}</p>
+                          <p className="truncate text-[13px] text-slate-500">{row.value}</p>
                         </div>
                       </li>
                     ))}
                   </ul>
 
-                  <div className="mt-6 flex items-center justify-between gap-3 rounded-2xl border border-[#E2E8F0] bg-[#F3F6FA] px-4 py-3.5">
-                    <span className="inline-flex items-center gap-2.5 text-[15px] font-medium text-slate-700">
-                      <Award size={16} className="shrink-0 text-brand-600" aria-hidden="true" />
+                  <div className="mt-4 flex items-center justify-between gap-3 rounded-xl border border-[#E2E8F0] bg-[#F3F6FA] px-3.5 py-3">
+                    <span className="inline-flex items-center gap-2.5 text-[14px] font-medium text-slate-700">
+                      <Award size={15} className="shrink-0 text-brand-600" aria-hidden="true" />
                       AWS Certified Solutions Architect — Associate
                     </span>
-                    <BadgeCheck size={16} className="shrink-0 text-success-600" aria-hidden="true" />
+                    <BadgeCheck size={15} className="shrink-0 text-success-600" aria-hidden="true" />
                   </div>
                 </article>
               </div>

@@ -8,7 +8,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 4rem;
     -webkit-text-size-adjust: 100%;
   }
 
@@ -30,7 +30,7 @@
   }
 
   p {
-    line-height: 1.8;
+    line-height: 1.65;
   }
 
   ::selection {
@@ -62,21 +62,21 @@
 }
 
 @layer components {
-  /* Section vertical rhythm — 80px top / 80px bottom per spec */
+  /* Section vertical rhythm — compact, keeps breathing room without bulk */
   .section-y {
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 64px;
+    padding-bottom: 64px;
   }
   @media (max-width: 1023px) {
     .section-y {
-      padding-top: 64px;
-      padding-bottom: 64px;
+      padding-top: 56px;
+      padding-bottom: 56px;
     }
   }
   @media (max-width: 639px) {
     .section-y {
-      padding-top: 56px;
-      padding-bottom: 56px;
+      padding-top: 48px;
+      padding-bottom: 48px;
     }
   }
 
@@ -87,20 +87,34 @@
   .kicker::before {
     content: '';
     display: block;
-    width: 1.75rem;
+    width: 1.5rem;
     height: 2px;
     border-radius: 9999px;
     background: currentColor;
   }
 
-  /* Global container — 1560px (≥1536) / 1640px (≥1920) with horizontal padding */
+  /* Reusable premium card surface — compact, refined borders & shadows */
+  .card-surface {
+    @apply rounded-xl border border-line bg-surface;
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.03), 0 6px 20px -8px rgb(15 23 42 / 0.08);
+    transition:
+      box-shadow 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.2s ease;
+  }
+  .card-surface:hover {
+    border-color: #d5dae3;
+    box-shadow: 0 2px 4px rgb(15 23 42 / 0.04), 0 12px 28px -10px rgb(15 23 42 / 0.12);
+  }
+
+  /* Global container — 1200px content column, horizontally centered */
   .container-wide {
     width: 100%;
-    max-width: 1560px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
   @media (min-width: 768px) {
     .container-wide {
@@ -112,11 +126,6 @@
     .container-wide {
       padding-left: 32px;
       padding-right: 32px;
-    }
-  }
-  @media (min-width: 1920px) {
-    .container-wide {
-      max-width: 1640px;
     }
   }
 }

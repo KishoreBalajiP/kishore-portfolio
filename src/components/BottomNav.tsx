@@ -39,16 +39,13 @@ export default function BottomNav() {
       className="fixed inset-x-0 bottom-0 z-40 md:hidden"
     >
       <div
-        className="rounded-t-2xl pb-safe-nav"
+        className="rounded-t-xl border-t border-line bg-white/85 backdrop-blur-xl"
         style={{
-          backgroundColor: 'rgba(255,255,255,0.82)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          borderTop: '1px solid #E5E7EB',
-          boxShadow: '0 -8px 24px rgba(15,23,42,0.06)',
+          boxShadow: '0 -6px 20px rgba(15,23,42,0.05)',
+          paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 4px)',
         }}
       >
-        <div className="grid grid-cols-5 px-2 pt-2">
+        <div className="grid grid-cols-5 px-1.5 pb-1 pt-1.5 sm:px-2">
           {items.map((item) => {
             const isActive = displayedActiveId === item.id;
             return (
@@ -60,21 +57,21 @@ export default function BottomNav() {
                   handleNavigation(item.id);
                 }}
                 aria-current={isActive ? 'true' : undefined}
-                className="flex flex-col items-center gap-1 rounded-xl py-1.5 transition-colors duration-200"
+                className="group flex flex-col items-center justify-center gap-0.5 rounded-lg py-1 transition-colors duration-200 active:bg-brand-600/10"
               >
                 <span
-                  className={`flex h-10 w-16 items-center justify-center rounded-full transition-all duration-200 ${
+                  className={`flex h-8 w-12 items-center justify-center rounded-full transition-all duration-200 sm:w-14 ${
                     isActive
                       ? 'bg-brand-600 text-white shadow-sm'
-                      : 'text-slate-400'
+                      : 'text-slate-400 group-hover:text-slate-600'
                   }`}
                 >
-                  <item.icon size={19} aria-hidden="true" />
+                  <item.icon size={18} aria-hidden="true" />
                 </span>
                 <span
-                  className={`text-[15px] font-medium leading-none ${
+                  className={`whitespace-nowrap text-[10px] font-medium leading-none tracking-tight sm:text-[11px] ${
                     isActive ? 'text-brand-700' : 'text-slate-500'
-                  }`}
+                  } max-[359px]:text-[9px]`}
                 >
                   {item.label}
                 </span>

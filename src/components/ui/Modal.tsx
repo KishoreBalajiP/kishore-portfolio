@@ -85,7 +85,7 @@ export default function Modal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={labelledBy}
-        className={`relative w-full bg-surface-0 text-slate-900 sm:rounded-xl rounded-t-xl shadow-xl animate-rise max-h-[90svh] overflow-y-auto ${maxWidth}`}
+        className={`relative w-full bg-surface text-slate-900 sm:rounded-xl rounded-t-xl shadow-xl animate-rise max-h-[90svh] overflow-y-auto ${maxWidth}`}
       >
         <button
           type="button"

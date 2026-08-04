@@ -39,22 +39,22 @@ export default {
       },
       fontSize: {
         'display': [
-          'clamp(2.625rem, 7vw, 4.5rem)',
-          { lineHeight: '1.04', letterSpacing: '-0.025em' },
+          'clamp(2rem, 4.5vw, 3.25rem)',
+          { lineHeight: '1.06', letterSpacing: '-0.02em' },
         ],
-        'hero': ['clamp(1.25rem, 2.5vw, 1.5rem)', { lineHeight: '1.4', letterSpacing: '-0.005em' }],
+        'hero': ['clamp(1.125rem, 2vw, 1.375rem)', { lineHeight: '1.4', letterSpacing: '-0.005em' }],
         'section': [
-          'clamp(2.25rem, 5vw, 3.5rem)',
-          { lineHeight: '1.08', letterSpacing: '-0.02em' },
+          'clamp(1.5rem, 2.25vw, 2rem)',
+          { lineHeight: '1.15', letterSpacing: '-0.015em' },
         ],
         'card-title': [
-          'clamp(1.5rem, 2vw, 1.75rem)',
-          { lineHeight: '1.25', letterSpacing: '-0.015em' },
+          'clamp(1.0625rem, 1.25vw, 1.25rem)',
+          { lineHeight: '1.3', letterSpacing: '-0.01em' },
         ],
-        'eyebrow': ['0.8125rem', { lineHeight: '1rem', letterSpacing: '0.14em' }],
-        'lead': ['1.0625rem', { lineHeight: '1.7' }],
-        'body': ['1rem', { lineHeight: '1.65' }],
-        'small': ['0.9375rem', { lineHeight: '1.55' }],
+        'eyebrow': ['0.75rem', { lineHeight: '1rem', letterSpacing: '0.12em' }],
+        'lead': ['0.9375rem', { lineHeight: '1.6' }],
+        'body': ['0.9375rem', { lineHeight: '1.6' }],
+        'small': ['0.875rem', { lineHeight: '1.5' }],
       },
       borderRadius: {
         xl: '0.75rem',
@@ -77,16 +77,16 @@ export default {
         // Contact — medium
         'contact': '0 10px 30px -12px rgb(15 23 42 / 0.10), 0 2px 6px rgb(15 23 42 / 0.04)',
         // Card (default)
-        'card': '0 1px 2px rgb(15 23 42 / 0.04), 0 10px 28px -12px rgb(15 23 42 / 0.10)',
+        'card': '0 1px 2px rgb(15 23 42 / 0.03), 0 6px 20px -8px rgb(15 23 42 / 0.08)',
         'card-hover':
-          '0 2px 4px rgb(15 23 42 / 0.04), 0 24px 48px -16px rgb(15 23 42 / 0.18)',
-        'panel': '0 1px 2px rgb(15 23 42 / 0.05), 0 16px 40px -20px rgb(15 23 42 / 0.16)',
+          '0 2px 4px rgb(15 23 42 / 0.04), 0 12px 28px -10px rgb(15 23 42 / 0.12)',
+        'panel': '0 1px 2px rgb(15 23 42 / 0.04), 0 8px 24px -12px rgb(15 23 42 / 0.10)',
         'modal': '0 24px 64px -16px rgb(15 23 42 / 0.28)',
       },
       maxWidth: {
-        content: '1560px',
+        content: '1200px',
         prose: '42rem',
-        paragraph: '700px',
+        paragraph: '640px',
       },
       keyframes: {
         'fade-in': {

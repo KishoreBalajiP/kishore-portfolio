@@ -131,32 +131,28 @@ export default function Certificates() {
       <Container>
         <div className="section-y">
           <Reveal>
-            <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
               <div>
                 <p className="kicker">Credentials</p>
-                <h2 className="mt-5 font-display text-[36px] font-semibold leading-[1.08] tracking-tight text-ink-900 sm:text-[44px] lg:text-[56px]">
+                <h2 className="mt-3 font-display text-[26px] font-semibold leading-[1.15] tracking-tight text-ink-900 sm:text-[30px] lg:text-[34px]">
                   Certificates &amp; Verification
                 </h2>
               </div>
-              <p className="max-w-[420px] text-[17px] text-slate-600 lg:text-right">
+              <p className="max-w-[380px] text-[14px] text-slate-600 lg:text-right">
                 Professional certifications in cloud architecture, DevOps, and core
                 programming.
               </p>
             </div>
           </Reveal>
 
-          <div className="mt-10 grid grid-cols-2 gap-3 md:mt-12 md:gap-6 lg:grid-cols-3">
+          <div className="mt-8 grid grid-cols-2 gap-2.5 md:gap-4 lg:grid-cols-3">
             {certificates.map((cert, index) => (
               <Reveal key={cert.id} delay={index * 40} className="h-full">
                 <article
-                  className="flex h-full cursor-pointer flex-col overflow-hidden rounded-[18px] border border-[#E2E8F0] bg-white"
-                  style={{ boxShadow: '0 8px 24px rgba(15,23,42,.05)' }}
+                  className="card-surface flex h-full cursor-pointer flex-col overflow-hidden"
                   onClick={() => openCert(cert)}
                 >
-                  <div
-                    className="relative aspect-[16/11] overflow-hidden bg-[#F3F6FA]"
-                    style={{ height: 150 }}
-                  >
+                  <div className="relative aspect-[16/11] overflow-hidden bg-[#F3F6FA]">
                     <img
                       src={cert.images[0]}
                       alt={`${cert.title} certificate`}
@@ -164,29 +160,29 @@ export default function Certificates() {
                       decoding="async"
                       width={480}
                       height={270}
-                      className="h-full w-full object-contain p-3"
+                      className="h-full w-full object-contain p-2"
                     />
-                    <span className="absolute right-2.5 top-2.5 hidden max-w-[calc(100%-1.25rem)] truncate rounded-full border border-brand-600/20 bg-ink-900/85 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-white shadow-sm backdrop-blur-md md:inline-block md:text-[11px]">
+                    <span className="absolute right-2 top-2 hidden max-w-[calc(100%-1rem)] truncate rounded-full border border-brand-600/20 bg-ink-900/85 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white shadow-sm backdrop-blur-md md:inline-block">
                       {cert.issuer}
                     </span>
                   </div>
 
-                  <div className="flex flex-1 flex-col gap-2 p-3.5 md:gap-0 md:p-5">
-                    <h3 className="font-display text-[15px] font-bold leading-[1.3] text-slate-900 md:text-[22px]">
+                  <div className="flex flex-1 flex-col gap-2 p-3 md:gap-2.5 md:p-4">
+                    <h3 className="font-display text-[14px] font-semibold leading-[1.3] text-slate-900 md:text-[17px]">
                       {cert.title}
                     </h3>
-                    <p className="mt-2 hidden text-[15px] leading-[1.7] text-slate-600 md:block md:text-[16px]">
+                    <p className="hidden text-[14px] leading-[1.6] text-slate-600 md:block">
                       {cert.description}
                     </p>
 
-                    <div className="mt-4 hidden flex-wrap items-center gap-x-4 gap-y-2 text-[15px] font-medium text-slate-700 md:flex md:text-[16px]">
-                      <span className="inline-flex items-center gap-2">
-                        <Calendar size={15} aria-hidden="true" className="text-slate-500" />
+                    <div className="hidden flex-wrap items-center gap-x-3 gap-y-1.5 text-[13px] font-medium text-slate-700 md:flex">
+                      <span className="inline-flex items-center gap-1.5">
+                        <Calendar size={14} aria-hidden="true" className="text-slate-500" />
                         <span>{cert.date}</span>
                       </span>
                       {cert.expiry && (
-                        <span className="inline-flex items-center gap-1.5 text-success-600">
-                          <BadgeCheck size={15} aria-hidden="true" />
+                        <span className="inline-flex items-center gap-1 text-success-600">
+                          <BadgeCheck size={14} aria-hidden="true" />
                           <span>{cert.expiry}</span>
                         </span>
                       )}
@@ -195,10 +191,10 @@ export default function Certificates() {
                     <button
                       type="button"
                       onClick={() => openCert(cert)}
-                      className="mt-auto inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-[#E2E8F0] bg-white px-4 text-[14px] font-semibold text-brand-700 transition-all duration-200 hover:border-brand-600 hover:bg-brand-50 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                      className="mt-auto inline-flex h-9 w-full items-center justify-center gap-1.5 rounded-lg border border-line bg-white px-4 text-[13px] font-semibold text-brand-700 transition-all duration-200 hover:border-brand-600 hover:bg-brand-50 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
                     >
                       View Certificate
-                      <ExternalLink size={14} aria-hidden="true" />
+                      <ExternalLink size={13} aria-hidden="true" />
                     </button>
                   </div>
                 </article>
@@ -213,16 +209,16 @@ export default function Certificates() {
             onClick={() => setSelectedCert(null)}
           >
             <div
-              className="relative max-h-[92svh] w-full max-w-3xl overflow-y-auto rounded-[18px] border border-[#E2E8F0] bg-white p-5 shadow-modal sm:p-7"
+              className="relative max-h-[92svh] w-full max-w-3xl overflow-y-auto rounded-xl border border-line bg-white p-4 shadow-modal sm:p-6"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 type="button"
                 aria-label="Close"
                 onClick={() => setSelectedCert(null)}
-                className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-[#E2E8F0] bg-white text-slate-600 shadow-[0_1px_2px_rgb(15_23_42_/_0.04)] transition-colors hover:bg-[#F3F6FA] hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+                className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-line bg-white text-slate-600 shadow-[0_1px_2px_rgb(15_23_42_/_0.04)] transition-colors hover:bg-[#F3F6FA] hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
               >
-                <X size={18} aria-hidden="true" />
+                <X size={16} aria-hidden="true" />
               </button>
 
               <div className="relative">
@@ -241,7 +237,7 @@ export default function Certificates() {
                   transition={{ duration: 0.35 }}
                   width={1024}
                   height={640}
-                  className="max-h-[52svh] w-full cursor-grab rounded-[18px] border border-[#E2E8F0] bg-[#F3F6FA] object-contain p-3 active:cursor-grabbing sm:p-4"
+                  className="max-h-[52svh] w-full cursor-grab rounded-xl border border-line bg-[#F3F6FA] object-contain p-2 active:cursor-grabbing"
                 />
 
                 {selectedCert.images.length > 1 && (
@@ -251,72 +247,70 @@ export default function Certificates() {
                       onClick={handlePrev}
                       disabled={currentIndex === 0}
                       aria-label="Previous certificate image"
-                      className={`absolute left-2 top-1/2 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full shadow-md transition-colors ${
+                      className={`absolute left-2 top-1/2 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full shadow-md transition-colors ${
                         currentIndex === 0
                           ? 'cursor-not-allowed bg-slate-200 text-slate-400'
                           : 'bg-white/95 text-slate-700 hover:bg-white'
                       }`}
                     >
-                      <ChevronLeft size={20} aria-hidden="true" />
+                      <ChevronLeft size={18} aria-hidden="true" />
                     </button>
                     <button
                       type="button"
                       onClick={handleNext}
                       disabled={currentIndex === selectedCert.images.length - 1}
                       aria-label="Next certificate image"
-                      className={`absolute right-2 top-1/2 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full shadow-md transition-colors ${
+                      className={`absolute right-2 top-1/2 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full shadow-md transition-colors ${
                         currentIndex === selectedCert.images.length - 1
                           ? 'cursor-not-allowed bg-slate-200 text-slate-400'
                           : 'bg-white/95 text-slate-700 hover:bg-white'
                       }`}
                     >
-                      <ChevronRight size={20} aria-hidden="true" />
+                      <ChevronRight size={18} aria-hidden="true" />
                     </button>
                   </>
                 )}
               </div>
 
-              <div className="mt-5 flex flex-wrap items-center gap-2 text-[16px] text-slate-500">
+              <div className="mt-4 flex flex-wrap items-center gap-2 text-[14px] text-slate-500">
                 <span className="inline-flex items-center gap-1.5 font-semibold text-slate-700">
                   {selectedCert.issuer}
                 </span>
                 <span aria-hidden="true">·</span>
                 <span className="inline-flex items-center gap-1.5">
-                  <Calendar size={14} aria-hidden="true" />
+                  <Calendar size={13} aria-hidden="true" />
                   {selectedCert.date}
                 </span>
               </div>
 
-              <h3 className="mt-2 font-display text-[22px] font-bold leading-[1.3] text-slate-900">
+              <h3 className="mt-2 font-display text-[20px] font-bold leading-[1.3] text-slate-900">
                 {selectedCert.title}
               </h3>
 
               {selectedCert.expiry && (
-                <p className="mt-2 inline-flex items-center gap-1.5 text-[16px] font-medium text-slate-600">
-                  <BadgeCheck size={15} className="text-success-600" aria-hidden="true" />
+                <p className="mt-2 inline-flex items-center gap-1.5 text-[14px] font-medium text-slate-600">
+                  <BadgeCheck size={14} className="text-success-600" aria-hidden="true" />
                   {selectedCert.expiry}
                 </p>
               )}
 
-              <p className="mt-3 text-[16px] leading-[1.7] text-slate-600">
+              <p className="mt-3 text-[14px] leading-[1.7] text-slate-600">
                 {selectedCert.description}
               </p>
 
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
                 <a
                   href={selectedCert.verifyLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 text-[16px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 sm:flex-none"
-                  style={{ height: 46 }}
+                  className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-brand-600 px-5 text-[14px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 sm:flex-none"
                 >
                   Verify Certificate
                 </a>
                 <button
                   type="button"
                   onClick={() => setSelectedCert(null)}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#E2E8F0] bg-white px-5 text-[16px] font-semibold text-slate-700 transition-all duration-200 hover:bg-[#F3F6FA] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 sm:flex-none"
-                  style={{ height: 46 }}
+                  className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-line bg-white px-5 text-[14px] font-semibold text-slate-700 transition-all duration-200 hover:bg-[#F3F6FA] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 sm:flex-none"
                 >
                   Close
                 </button>

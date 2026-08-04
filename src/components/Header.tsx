@@ -31,20 +31,20 @@ export default function Header() {
           boxShadow: '0 4px 18px rgba(15,23,42,0.05)',
         }}
       >
-        <div className="container-wide flex h-20 items-center justify-between">
+        <div className="container-wide flex h-16 items-center justify-between">
           <a
             href="#about"
-            className="group flex items-center gap-3 rounded-md text-slate-900 transition-colors"
+            className="group flex items-center gap-2.5 rounded-md text-slate-900 transition-colors"
           >
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-ink-900 font-display text-base font-bold text-blue-300 ring-1 ring-inset ring-white/10 transition-transform duration-200 group-hover:-translate-y-0.5">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-ink-900 font-display text-sm font-bold text-blue-300 ring-1 ring-inset ring-white/10 transition-transform duration-200 group-hover:-translate-y-0.5">
               KB
             </span>
-            <span className="hidden font-display text-[15px] font-semibold tracking-tight sm:block">
+            <span className="hidden font-display text-sm font-semibold tracking-tight sm:block">
               Kishore Balaji&nbsp;P
             </span>
           </a>
 
-          <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
+          <nav className="hidden md:flex items-center gap-0.5" aria-label="Primary">
             {navItems.map((item) => {
               const isActive = activeId === item.id;
               return (
@@ -52,7 +52,7 @@ export default function Header() {
                   key={item.id}
                   href={`#${item.id}`}
                   aria-current={isActive ? 'true' : undefined}
-                  className={`relative rounded-md px-3 py-2 text-[15px] font-medium transition-colors ${
+                  className={`relative rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors ${
                     isActive
                       ? 'text-brand-700'
                       : 'text-slate-600 hover:text-slate-900'
@@ -61,7 +61,7 @@ export default function Header() {
                   {item.label}
                   <span
                     aria-hidden="true"
-                    className={`absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-brand-600 transition-transform duration-200 ${
+                    className={`absolute inset-x-2.5 -bottom-px h-0.5 rounded-full bg-brand-600 transition-transform duration-200 ${
                       isActive ? 'scale-x-100' : 'scale-x-0'
                     }`}
                   />
@@ -73,9 +73,9 @@ export default function Header() {
           <a
             href="/pdf/resume.pdf"
             download="Kishore_Balaji_Resume.pdf"
-            className="inline-flex h-11 items-center gap-2 rounded-xl bg-ink-900 px-5 text-[15px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+            className="inline-flex h-9 items-center gap-2 rounded-lg bg-ink-900 px-4 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
           >
-            <Download size={16} aria-hidden="true" />
+            <Download size={15} aria-hidden="true" />
             <span className="hidden sm:inline">Resume</span>
           </a>
         </div>

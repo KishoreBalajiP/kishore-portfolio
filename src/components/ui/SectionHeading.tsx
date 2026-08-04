@@ -22,7 +22,7 @@ export default function SectionHeading({
   return (
     <Reveal className={alignCls}>
       <p
-        className={`mb-3 font-body text-eyebrow font-semibold uppercase ${
+        className={`mb-2 font-body text-eyebrow font-semibold uppercase ${
           onDark ? 'text-blue-300' : 'text-brand-600'
         }`}
       >
@@ -38,7 +38,7 @@ export default function SectionHeading({
       </h2>
       {description && (
         <p
-          className={`mt-4 mx-auto max-w-2xl text-lead ${
+          className={`mt-3 mx-auto max-w-2xl text-lead ${
             onDark ? 'text-slate-300' : 'text-slate-600'
           } ${align === 'center' ? 'mx-auto' : ''}`}
         >

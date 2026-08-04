@@ -22,7 +22,7 @@ const socials = [
 ];
 
 const inputClasses =
-  'w-full h-12 rounded-xl border border-line bg-canvas-3 px-4 text-[17px] text-slate-900 placeholder:text-slate-400 transition-colors duration-200 ' +
+  'w-full h-11 rounded-lg border border-line bg-canvas-3 px-3.5 text-[15px] text-slate-900 placeholder:text-slate-400 transition-colors duration-200 ' +
   'focus:border-brand-600 focus:bg-surface focus:outline-none focus:ring-2 focus:ring-brand-600/20';
 
 function ContactForm() {
@@ -75,12 +75,12 @@ function ContactForm() {
           <p className="mt-1 text-sm text-emerald-700">I’ll get back to you soon.</p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <form onSubmit={handleSubmit} className="space-y-3.5">
+          <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
             <div>
               <label
                 htmlFor="contact-name"
-                className="mb-2 block text-[15px] font-medium text-slate-700"
+                className="mb-1.5 block text-[13px] font-medium text-slate-700"
               >
                 Name
               </label>
@@ -98,7 +98,7 @@ function ContactForm() {
             <div>
               <label
                 htmlFor="contact-email"
-                className="mb-2 block text-[15px] font-medium text-slate-700"
+                className="mb-1.5 block text-[13px] font-medium text-slate-700"
               >
                 Email
               </label>
@@ -117,7 +117,7 @@ function ContactForm() {
           <div>
             <label
               htmlFor="contact-message"
-              className="mb-2 block text-[15px] font-medium text-slate-700"
+              className="mb-1.5 block text-[13px] font-medium text-slate-700"
             >
               Message
             </label>
@@ -135,10 +135,9 @@ function ContactForm() {
           <button
             type="submit"
             disabled={isSending}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 text-[16px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none sm:w-auto"
-            style={{ height: 46 }}
+            className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-6 text-[14px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none sm:w-auto"
           >
-            <Send size={16} aria-hidden="true" />
+            <Send size={15} aria-hidden="true" />
             {isSending ? 'Sending...' : 'Send Message'}
           </button>
         </form>
@@ -206,17 +205,17 @@ export default function Contact() {
       <Container>
         <div className="section-y">
           <Reveal>
-            <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
               <div>
                 <p className="kicker">Contact</p>
-                <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
-                  <h2 className="font-display text-[36px] font-semibold leading-[1.08] tracking-tight text-ink-900 sm:text-[44px] lg:text-[56px]">
+                <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
+                  <h2 className="font-display text-[26px] font-semibold leading-[1.15] tracking-tight text-ink-900 sm:text-[30px] lg:text-[34px]">
                     Get In Touch
                   </h2>
                   <button
                     type="button"
                     onClick={() => setIsFormOpen(true)}
-                    className="group inline-flex h-11 w-fit items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 text-[14px] font-semibold text-white shadow-[0_18px_40px_-12px_rgba(37,99,235,0.55)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 md:hidden"
+                    className="group inline-flex h-10 w-fit items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 text-sm font-semibold text-white shadow-[0_12px_28px_-12px_rgba(37,99,235,0.5)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 md:hidden"
                     aria-haspopup="dialog"
                     aria-expanded={isFormOpen}
                   >
@@ -229,32 +228,32 @@ export default function Contact() {
                   </button>
                 </div>
               </div>
-              <p className="max-w-[420px] text-[17px] text-slate-600 lg:text-right">
+              <p className="max-w-[380px] text-[14px] text-slate-600 lg:text-right">
                 I’m always open to discussing new opportunities and projects.
               </p>
             </div>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-12">
+          <div className="mt-8 grid gap-4 lg:grid-cols-12">
             <Reveal className="lg:col-span-5">
-              <div className="flex h-full flex-col rounded-[18px] border border-[#E2E8F0] bg-white p-6 shadow-[0_8px_24px_rgba(15,23,42,0.05)]">
+              <div className="card-surface flex h-full flex-col p-5">
                 <ul className="divide-y divide-line-soft">
                   {contactRows.map((row) => (
-                    <li key={row.label} className="py-3.5 first:pt-0 last:pb-0">
-                      <a href={row.href} className="group flex items-center gap-4">
-                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                          <row.icon size={18} aria-hidden="true" />
+                    <li key={row.label} className="py-3 first:pt-0 last:pb-0">
+                      <a href={row.href} className="group flex items-center gap-3.5">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
+                          <row.icon size={16} aria-hidden="true" />
                         </span>
                         <span className="min-w-0 flex-1">
-                          <span className="block text-[15px] font-medium uppercase tracking-wide text-slate-500">
+                          <span className="block text-[13px] font-medium uppercase tracking-wide text-slate-500">
                             {row.label}
                           </span>
-                          <span className="mt-1 block break-all text-[17px] font-semibold text-slate-900">
+                          <span className="mt-0.5 block break-all text-[15px] font-semibold text-slate-900">
                             {row.value}
                           </span>
                         </span>
                         <ChevronRight
-                          size={16}
+                          size={15}
                           className="shrink-0 text-slate-300 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-brand-600"
                           aria-hidden="true"
                         />
@@ -262,25 +261,25 @@ export default function Contact() {
                     </li>
                   ))}
 
-                  <li className="py-3.5 first:pt-0 last:pb-0">
+                  <li className="py-3 first:pt-0 last:pb-0">
                     <button
                       type="button"
                       onClick={() => setIsMapOpen(true)}
-                      className="group flex w-full items-center gap-4 text-left"
+                      className="group flex w-full items-center gap-3.5 text-left"
                     >
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                        <MapPin size={18} aria-hidden="true" />
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
+                        <MapPin size={16} aria-hidden="true" />
                       </span>
                       <span className="min-w-0 flex-1">
-                        <span className="block text-[15px] font-medium uppercase tracking-wide text-slate-500">
+                        <span className="block text-[13px] font-medium uppercase tracking-wide text-slate-500">
                           Location
                         </span>
-                        <span className="mt-1 block text-[17px] font-semibold text-slate-900">
+                        <span className="mt-0.5 block text-[15px] font-semibold text-slate-900">
                           Chennai, India
                         </span>
                       </span>
                       <ChevronRight
-                        size={16}
+                        size={15}
                         className="shrink-0 text-slate-300 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-brand-600"
                         aria-hidden="true"
                       />
@@ -288,9 +287,9 @@ export default function Contact() {
                   </li>
                 </ul>
 
-                <div className="mt-5 border-t border-line-soft pt-4">
-                  <p className="text-[16px] font-semibold text-slate-900">Connect with me</p>
-                  <div className="mt-3 flex flex-wrap gap-2">
+                <div className="mt-4 border-t border-line-soft pt-4">
+                  <p className="text-[14px] font-semibold text-slate-900">Connect with me</p>
+                  <div className="mt-2.5 flex flex-wrap gap-2">
                     {socials.map((social) => (
                       <a
                         key={social.label}
@@ -298,9 +297,9 @@ export default function Contact() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={social.label}
-                        className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#E2E8F0] bg-white text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-600 hover:bg-brand-50 hover:text-brand-600"
+                        className="flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-white text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-600 hover:bg-brand-50 hover:text-brand-600"
                       >
-                        <social.icon size={17} aria-hidden="true" />
+                        <social.icon size={15} aria-hidden="true" />
                       </a>
                     ))}
                   </div>
@@ -311,12 +310,12 @@ export default function Contact() {
             <Reveal delay={120} className="lg:col-span-7">
               <div
                 id="contact-form"
-                className="hidden h-full rounded-[18px] border border-[#E2E8F0] bg-white p-6 shadow-[0_8px_24px_rgba(15,23,42,0.05)] md:block"
+                className="card-surface hidden h-full p-5 md:block"
               >
-                <h3 className="font-display text-[22px] font-semibold tracking-tight text-slate-900">
+                <h3 className="font-display text-[18px] font-semibold tracking-tight text-slate-900">
                   Send a Message
                 </h3>
-                <div className="mt-5">
+                <div className="mt-4">
                   <ContactForm />
                 </div>
               </div>
@@ -356,7 +355,7 @@ export default function Contact() {
               <div className="flex items-start justify-between gap-3 px-5 pt-3">
                 <div>
                   <p className="kicker">Contact</p>
-                  <h3 className="mt-2 font-display text-[22px] font-semibold tracking-tight text-slate-900">
+                  <h3 className="mt-1.5 font-display text-[18px] font-semibold tracking-tight text-slate-900">
                     Send a Message
                   </h3>
                 </div>
@@ -364,12 +363,12 @@ export default function Contact() {
                   type="button"
                   aria-label="Close"
                   onClick={closeForm}
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#E2E8F0] bg-white text-slate-600 shadow-[0_1px_2px_rgb(15_23_42_/_0.04)] transition-colors hover:bg-[#F3F6FA] hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-white text-slate-600 shadow-[0_1px_2px_rgb(15_23_42_/_0.04)] transition-colors hover:bg-[#F3F6FA] hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
                 >
-                  <X size={18} aria-hidden="true" />
+                  <X size={16} aria-hidden="true" />
                 </button>
               </div>
-              <div className="max-h-[calc(92svh-96px)] overflow-y-auto px-5 pb-8 pt-4 pb-safe">
+              <div className="max-h-[calc(92svh-96px)] overflow-y-auto px-5 pb-6 pt-4 pb-safe">
                 <ContactForm />
               </div>
             </div>
@@ -382,18 +381,18 @@ export default function Contact() {
             onClick={() => setIsMapOpen(false)}
           >
             <div
-              className="relative w-full max-w-2xl rounded-[18px] border border-[#E2E8F0] bg-white p-5 shadow-modal sm:p-7"
+              className="relative w-full max-w-2xl rounded-xl border border-line bg-white p-4 shadow-modal sm:p-6"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 type="button"
                 aria-label="Close"
                 onClick={() => setIsMapOpen(false)}
-                className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full border border-[#E2E8F0] bg-white text-slate-600 shadow-[0_1px_2px_rgb(15_23_42_/_0.04)] transition-colors hover:bg-[#F3F6FA] hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+                className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full border border-line bg-white text-slate-600 shadow-[0_1px_2px_rgb(15_23_42_/_0.04)] transition-colors hover:bg-[#F3F6FA] hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
               >
-                <X size={18} aria-hidden="true" />
+                <X size={16} aria-hidden="true" />
               </button>
-              <h3 className="font-display text-[22px] font-bold text-slate-900">
+              <h3 className="font-display text-[18px] font-bold text-slate-900">
                 Chennai, India
               </h3>
               <iframe
@@ -401,7 +400,7 @@ export default function Contact() {
                 src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15507.151717006997!2d80.2707!3d13.0827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1697512345678!5m2!1sen!2sin"
                 width="100%"
                 height="300"
-                style={{ border: 0, borderRadius: '0.75rem' }}
+                style={{ border: 0, borderRadius: '0.5rem' }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -411,8 +410,7 @@ export default function Contact() {
                 href="https://www.google.com/maps/search/?api=1&query=13.0827,80.2707"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 text-[16px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 active:scale-[0.98] sm:w-auto"
-                style={{ height: 46 }}
+                className="mt-4 inline-flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-6 text-[14px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 active:scale-[0.98] sm:w-auto"
               >
                 Open in Google Maps
               </a>

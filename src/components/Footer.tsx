@@ -19,8 +19,8 @@ const socials = [
 export default function Footer() {
   return (
     <footer className="bg-ink-900 text-slate-300">
-      <Container className="pb-24 pt-10 md:pb-8 md:pt-12">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8 lg:gap-12">
+      <Container className="pb-24 pt-8 md:pb-8 md:pt-10">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-8 lg:gap-12">
           <div className="space-y-4">
             <a href="#about" className="flex items-center gap-3">
               <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 font-display text-sm font-bold text-blue-300 ring-1 ring-inset ring-white/10">
@@ -98,7 +98,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col justify-between gap-2 border-t border-white/10 pt-4 text-[13px] text-slate-500 sm:flex-row sm:items-center">
+        <div className="mt-6 flex flex-col justify-between gap-2 border-t border-white/10 pt-4 text-[13px] text-slate-500 sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} Kishore Balaji P · All rights reserved.</p>
           <p className="text-slate-500">Crafted with care.</p>
         </div>
