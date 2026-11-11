@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://kishorebalajip.github.io/kishore-portfolio/sitemap.xml

@@ -76,7 +76,7 @@ export default function Modal({
       role="presentation"
     >
       <div
-        className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm animate-fade-in"
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-fade-in"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -85,13 +85,13 @@ export default function Modal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={labelledBy}
-        className={`relative w-full bg-surface text-slate-900 sm:rounded-xl rounded-t-xl shadow-xl animate-rise max-h-[90svh] overflow-y-auto ${maxWidth}`}
+        className={`relative w-full border border-edge bg-card text-fg sm:rounded-2xl rounded-t-2xl shadow-2xl animate-rise max-h-[90svh] overflow-y-auto ${maxWidth}`}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close dialog"
-          className="absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+          className="absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full text-dim transition-colors hover:bg-card2 hover:text-fg"
         >
           <X size={20} />
         </button>
