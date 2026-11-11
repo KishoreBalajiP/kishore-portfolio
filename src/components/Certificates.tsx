@@ -34,38 +34,6 @@ const certificates: Certificate[] = [
       'https://www.credly.com/badges/6e171721-2c30-43b0-a00f-7b264d450fe0/public_url',
   },
   {
-    id: 3,
-    title: 'Python (Basic)',
-    issuer: 'HackerRank',
-    date: '2024',
-    description:
-      'Certification demonstrating proficiency in Python programming fundamentals and problem-solving.',
-    images: ['/certificates/hackerrank-python.png'],
-    file: '/certificates/hackerrank-python.pdf',
-    verifyLink: 'https://www.hackerrank.com/certificates/iframe/a71532c85c45',
-  },
-  {
-    id: 4,
-    title: 'Java (Basic)',
-    issuer: 'HackerRank',
-    date: '2024',
-    description:
-      'Certification covering core Java concepts, OOP principles, and coding best practices.',
-    images: ['/certificates/hackerrank-java.png'],
-    file: '/certificates/hackerrank-java.pdf',
-    verifyLink: 'https://www.hackerrank.com/certificates/iframe/a4b31aefdfe5',
-  },
-  {
-    id: 6,
-    title: 'SQL (Basic)',
-    issuer: 'HackerRank',
-    date: '2024',
-    description:
-      'Certification demonstrating understanding of SQL fundamentals, queries, and database operations.',
-    images: ['/certificates/hackerrank-sql.png'],
-    verifyLink: 'https://www.hackerrank.com/certificates/iframe/9f1230ec4c41',
-  },
-  {
     id: 1,
     title: 'IBM DevOps Fundamentals',
     issuer: 'IBM',
@@ -76,18 +44,6 @@ const certificates: Certificate[] = [
     file: '/certificates/ibm-devops.pdf',
     verifyLink:
       'https://courses.vit.skillsnetwork.site/certificates/9b48215b7c63400abd616dd6b7e36d5b',
-  },
-  {
-    id: 2,
-    title: 'IBM Agile and Design Thinking',
-    issuer: 'IBM',
-    date: '2025',
-    description:
-      'Training in Agile methodologies, Scrum framework, and user-centered design thinking principles.',
-    images: ['/certificates/ibm-agile.png'],
-    file: '/certificates/ibm-agile.pdf',
-    verifyLink:
-      'https://courses.vit.skillsnetwork.site/certificates/904610c2705b4549a8840a24281692cf',
   },
 ];
 
@@ -139,20 +95,19 @@ export default function Certificates() {
                 </h2>
               </div>
               <p className="max-w-[380px] text-[14px] text-slate-600 lg:text-right">
-                Professional certifications in cloud architecture, DevOps, and core
-                programming.
+                Professional certifications in cloud architecture and DevOps.
               </p>
             </div>
           </Reveal>
 
-          <div className="mt-8 grid grid-cols-2 gap-2.5 md:gap-4 lg:grid-cols-3">
+          <div className="mt-8 grid grid-cols-2 gap-2.5 md:gap-4">
             {certificates.map((cert, index) => (
               <Reveal key={cert.id} delay={index * 40} className="h-full">
                 <article
-                  className="card-surface flex h-full cursor-pointer flex-col overflow-hidden"
+                  className="card-surface flex h-full cursor-pointer flex-col overflow-hidden lg:flex-row"
                   onClick={() => openCert(cert)}
                 >
-                  <div className="relative aspect-[16/11] overflow-hidden bg-[#F3F6FA]">
+                  <div className="relative aspect-[16/11] overflow-hidden bg-[#F3F6FA] lg:aspect-auto lg:w-[40%] lg:shrink-0">
                     <img
                       src={cert.images[0]}
                       alt={`${cert.title} certificate`}
@@ -160,7 +115,7 @@ export default function Certificates() {
                       decoding="async"
                       width={480}
                       height={270}
-                      className="h-full w-full object-contain p-2"
+                      className="h-full w-full object-cover lg:absolute lg:inset-0"
                     />
                     <span className="absolute right-2 top-2 hidden max-w-[calc(100%-1rem)] truncate rounded-full border border-brand-600/20 bg-ink-900/85 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white shadow-sm backdrop-blur-md md:inline-block">
                       {cert.issuer}

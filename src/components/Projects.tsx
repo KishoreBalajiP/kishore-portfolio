@@ -1,4 +1,6 @@
-import { ArrowUpRight, Cloud, Github } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowUpRight, Cloud, Download, Github } from 'lucide-react';
+import Modal from './ui/Modal';
 import Container from './ui/Container';
 import Reveal from './ui/Reveal';
 
@@ -12,6 +14,8 @@ interface Project {
   liveUrl: string;
   githubBackendUrl?: string;
   githubFrontendUrl?: string;
+  report: string;
+  highlights: string[];
 }
 
 const projects: Project[] = [
@@ -26,6 +30,13 @@ const projects: Project[] = [
     liveUrl: 'https://analivo.vercel.app',
     githubBackendUrl: 'https://github.com/KishoreBalajiP/saas-analytics-backend',
     githubFrontendUrl: 'https://github.com/KishoreBalajiP/saas-analytics-frontend',
+    report: '/pdf/analivo-project-report.pdf',
+    highlights: [
+      'Multi-tenant architecture with server-side tenant isolation and 6 built-in RBAC roles',
+      'CSV, XLSX, MongoDB and webhook connectors with background syncs on BullMQ and Redis',
+      'AI query planner whose output must pass the engine validator before anything runs',
+      'Dashboards, scheduled reports, alerts, embeds and a versioned external API',
+    ],
   },
   {
     id: 2,
@@ -38,10 +49,19 @@ const projects: Project[] = [
     liveUrl: 'https://vivasayiai.vercel.app',
     githubBackendUrl: 'https://github.com/KishoreBalajiP/VivasayiAI',
     githubFrontendUrl: 'https://github.com/KishoreBalajiP/VivasayiAI-Frontend',
+    report: '/pdf/vivasayiai-project-report.pdf',
+    highlights: [
+      'RAG over curated agricultural data with Gemini, Cohere embeddings and Chroma',
+      "Answers in Tamil or English, using the farmer's district, crops and live weather",
+      'Crop-loss claims verified from photos, documents, weather and satellite data',
+      'Docker image on AWS Lambda, deployed by GitHub Actions through Amazon ECR',
+    ],
   },
 ];
 
 export default function Projects() {
+  const [open, setOpen] = useState<Project | null>(null);
+
   return (
     <section id="projects" aria-label="Projects" className="bg-white">
       <Container>
@@ -61,11 +81,23 @@ export default function Projects() {
             </div>
           </Reveal>
 
-          <div className="mt-8 grid grid-cols-2 gap-2.5 md:gap-4 lg:grid-cols-3">
+          <div className="mt-8 grid grid-cols-2 gap-2.5 md:gap-4">
             {projects.map((project, index) => (
               <Reveal key={project.id} delay={index * 80} className="h-full">
-                <article className="card-surface flex h-full flex-col overflow-hidden">
-                  <div className="relative aspect-[16/10] overflow-hidden bg-[#F3F6FA]">
+                <article
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View details for ${project.title}`}
+                  onClick={() => setOpen(project)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setOpen(project);
+                    }
+                  }}
+                  className="card-surface flex h-full cursor-pointer flex-col overflow-hidden hover:-translate-y-0.5 lg:flex-row"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden bg-[#F3F6FA] lg:aspect-auto lg:w-[38%] lg:shrink-0">
                     <img
                       src={project.image}
                       alt={`${project.title} screenshot`}
@@ -73,7 +105,7 @@ export default function Projects() {
                       decoding="async"
                       width={800}
                       height={500}
-                      className="absolute inset-0 h-full w-full object-cover object-top"
+                      className="absolute inset-0 h-full w-full object-cover object-left-top"
                     />
                     <span className="absolute left-2.5 top-2.5 hidden items-center gap-1.5 rounded-full border border-white/25 bg-ink-900/75 px-2 py-0.5 text-[11px] font-medium text-white backdrop-blur-sm md:inline-flex">
                       <Cloud size={12} aria-hidden="true" />
@@ -110,7 +142,8 @@ export default function Projects() {
                           href={project.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex h-9 w-full items-center justify-center gap-1.5 rounded-lg bg-brand-600 px-3 text-[13px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex h-9 w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-lg bg-brand-600 px-2 text-[13px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
                         >
                           Live Demo
                           <ArrowUpRight size={14} aria-hidden="true" />
@@ -124,9 +157,10 @@ export default function Projects() {
                           href={project.githubBackendUrl}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
                           title="Backend source repository on GitHub"
                           aria-label="Backend source on GitHub"
-                          className="inline-flex h-9 w-full items-center justify-center gap-1.5 rounded-lg bg-ink-900 px-3 text-[13px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-ink-800 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                          className="inline-flex h-9 w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-lg bg-ink-900 px-2 text-[13px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-ink-800 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
                         >
                           <Github size={14} aria-hidden="true" />
                           Backend
@@ -137,9 +171,10 @@ export default function Projects() {
                           href={project.githubFrontendUrl}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
                           title="Frontend source repository on GitHub"
                           aria-label="Frontend source on GitHub"
-                          className="inline-flex h-9 w-full items-center justify-center gap-1.5 rounded-lg bg-ink-900 px-3 text-[13px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-ink-800 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                          className="inline-flex h-9 w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-lg bg-ink-900 px-2 text-[13px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-ink-800 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
                         >
                           <Github size={14} aria-hidden="true" />
                           Frontend
@@ -150,7 +185,8 @@ export default function Projects() {
                           href={project.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex h-9 w-full items-center justify-center gap-1.5 rounded-lg bg-brand-600 px-3 text-[13px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex h-9 w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-lg bg-brand-600 px-2 text-[13px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
                         >
                           Live Demo
                           <ArrowUpRight size={14} aria-hidden="true" />
@@ -164,6 +200,74 @@ export default function Projects() {
           </div>
         </div>
       </Container>
+
+      <Modal open={!!open} onClose={() => setOpen(null)} labelledBy="project-title" maxWidth="max-w-2xl">
+        {open && (
+          <div>
+            <div className="relative aspect-[16/9] overflow-hidden bg-[#F3F6FA]">
+              <img
+                src={open.image}
+                alt={`${open.title} screenshot`}
+                className="absolute inset-0 h-full w-full object-cover object-left-top"
+              />
+            </div>
+            <div className="p-5 sm:p-6">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-canvas-3 px-2.5 py-0.5 text-[12px] font-medium text-slate-600">
+                <Cloud size={12} aria-hidden="true" />
+                {open.deployment}
+              </span>
+              <h3 id="project-title" className="mt-3 font-display text-[20px] font-semibold tracking-tight text-ink-900 sm:text-[22px]">
+                {open.title}
+              </h3>
+              <p className="mt-2 text-[14px] leading-[1.65] text-slate-600">{open.description}</p>
+
+              <ul className="mt-4 space-y-2 border-t border-line pt-4 text-[14px] text-slate-700">
+                {open.highlights.map((h) => (
+                  <li key={h} className="flex gap-2.5">
+                    <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-brand-600" aria-hidden="true" />
+                    {h}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {open.stack.map((tech) => (
+                  <span key={tech} className="inline-flex h-[26px] items-center rounded-full border border-line bg-canvas-3 px-2.5 text-[12px] font-semibold text-slate-700">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                <a
+                  href={open.report}
+                  download
+                  className="col-span-2 inline-flex h-10 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg bg-brand-600 px-3 text-[13px] font-semibold text-white transition-colors hover:bg-brand-700 sm:col-span-1"
+                >
+                  <Download size={14} aria-hidden="true" />
+                  Report
+                </a>
+                <a href={open.liveUrl} target="_blank" rel="noopener noreferrer" className="col-span-2 inline-flex h-10 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg bg-ink-900 px-3 text-[13px] font-semibold text-white transition-colors hover:bg-ink-800 sm:col-span-1">
+                  Live Demo
+                  <ArrowUpRight size={14} aria-hidden="true" />
+                </a>
+                {open.githubFrontendUrl && (
+                  <a href={open.githubFrontendUrl} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-line bg-white px-3 text-[13px] font-semibold text-slate-800 transition-colors hover:border-brand-600 hover:text-brand-700">
+                    <Github size={14} aria-hidden="true" />
+                    Frontend
+                  </a>
+                )}
+                {open.githubBackendUrl && (
+                  <a href={open.githubBackendUrl} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-line bg-white px-3 text-[13px] font-semibold text-slate-800 transition-colors hover:border-brand-600 hover:text-brand-700">
+                    <Github size={14} aria-hidden="true" />
+                    Backend
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+      </Modal>
     </section>
   );
 }
